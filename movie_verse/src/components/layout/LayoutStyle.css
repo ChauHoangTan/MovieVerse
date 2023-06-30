@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation{
+    margin: 2% 5%;
+}
