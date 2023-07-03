@@ -4,7 +4,7 @@ import RouteLayout from './routes/Route.js';
 
 function App() {
   return (
-    <RouteLayout/>
+    <RouteLayout />
   );
 }
 

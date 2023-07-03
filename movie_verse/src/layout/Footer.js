@@ -1,11 +1,11 @@
 import React from 'react';
-import './LayoutStyle.css'
+import './LayoutStyle.scss'
 
 function Footer() {
-    return ( 
-    <div className='footer'>
-        This is footer
-    </div> );
+    return (
+        <div className='footer'>
+            This is footer
+        </div>);
 }
 
 export default Footer;
