@@ -11,7 +11,6 @@ function Layout({ children }) {
             <Header />
             <Outlet />
             <Footer />
-
         </>);
 }
 

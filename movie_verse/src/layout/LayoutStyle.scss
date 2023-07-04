@@ -15,5 +15,46 @@
 
 
 .footer {
-    margin: auto auto 0px auto;
+    background-color: #D8E2EB;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.logo-page {
+    width: 12vh;
+}
+
+.me-auto {
+    font-size: 16px;
+}
+
+.title {
+    color: white;
+    font-family: sans-serif;
+    margin-right: 70px;
+}
+
+.bg-body-tertiary {
+    background-color: #152544 !important
+}
+
+.right-container {
+    flex: 1;
+    flex-direction: 'row';
+    justify-content: 'flex-end';
+    align-items: 'center';
+}
+
+.title-footer {
+    color: #152544;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.compo-footer {
+    color: #152544;
+    font-weight: medium;
+    font-size: 15px;
+    margin-left: 20px;
 }
