@@ -1,0 +1,27 @@
+
+
+.contentReviews{
+    color:aliceblue;
+    margin-left: 10%;
+    font-size: 25px;
+    padding-top: 2%
+}
+
+.inputReview{
+    appearance: none;
+    outline: none;
+    border: none;
+    background-color: black;
+    width: 100%;
+    resize: none;
+    overflow: hidden; 
+}
+
+.writeReview{
+    border:2px solid rgb(142, 133, 133);
+}
+
+.writeReview.isFocus{
+    border-color: rgb(206, 53, 53);
+}
+

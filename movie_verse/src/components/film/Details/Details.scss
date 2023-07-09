@@ -1,0 +1,190 @@
+
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    background-color: black;
+    position: relative;
+
+
+    .containerBackground{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70%;
+      background-image: url('https://toigingiuvedep.vn/wp-content/uploads/2022/12/hinh-anh-wednesday-lam-hinh-nen-may-tinh.jpg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+  }
+  
+  
+  
+  // overlay phần dưới background
+  
+  .setOverlay{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(
+      180deg,
+      rgba(73, 67, 67, 0) 0%,
+      #000000 100%
+  );
+  }
+  
+    .avatar{
+      z-index: 1;
+      img{
+          width: 100%;
+          height: auto;
+      }
+    }
+  
+    .details{
+      margin-top: 30%;
+      margin-left: 15%;
+      display: grid;
+      grid-template-columns: 35% auto;
+  
+      
+    }
+  
+    .info{
+      padding: 10px;
+      margin-left: 10px;
+      font-size: 20px;
+      color: #fffdfd;
+      z-index: 2;
+    }
+  
+    .name{
+      font-size: 30px;
+    }
+  
+    .slogan{
+      margin-top: -1%;
+      font-size: 75%;
+    }
+  
+    .circleBackground{
+      fill: #010101;
+      stroke: #c3bcbc;
+    }
+  
+    .progressBar{
+      fill: none;
+      stroke: rgb(20, 141, 62);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  
+    .textRating{
+      font-size: 60%;
+      color: #cbecf5;
+    }
+  
+    .rating:hover{
+      transform:scale(1.25);
+    }
+  
+    .play{
+      border-radius: 0.6rem;
+    }
+  
+    .play:hover{
+      background-color: #4bb569;
+      transform: scale(1.1);
+    }
+  
+    .field{
+      margin-top: 2%;
+    }
+  
+    .image{
+      width: 95%;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+
+      img:hover{
+        border: 2px solid #cbecf5;
+      }
+      
+    }
+  
+  
+
+    .list > div:hover{
+      transform: scale(1.25);    
+    }
+
+    .list{
+      .isPlaylistClick{
+        color: rgb(17, 96, 182);
+      }
+      .isFavoriteClick{
+        color: #f2033b
+      }
+      .isBookmarkClick{
+        color: rgb(41, 94, 184)
+      }
+      .isRatingClick{
+        color: rgb(251, 251, 47)
+      }
+
+      .dropdown-menu{
+        background-color: #262443;
+        border-radius: 5px;
+
+        .iconMinus{
+          color: white;
+          padding: 5px;
+          transform: scale(1.25);
+          padding-left: 10px;
+        }
+        .iconStar{
+          color: white;
+          padding: 5px;
+          transform: scale(1.25);
+          border-radius: 0px;
+        }
+        .isTarget{
+          color: yellow;
+        }
+        .iconStar:last-child{
+          padding-right: 10px;
+        }
+      }
+
+    }
+
+
+
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
