@@ -3,7 +3,7 @@ import Carousel from 'react-grid-carousel';
 import './Backdrops.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function Backdrops({title,list,cols}) {
+function Backdrops({title,images,cols}) {
     return ( 
         <div className='wrapperBackdrops'>
 
@@ -13,10 +13,10 @@ function Backdrops({title,list,cols}) {
                 <div className='mt-3 image'>
                     <Carousel rows={1} cols={cols} gap={0} loop>
                         
-                        {list.map( (backdrop, index) => {
+                        {images.map( (image, index) => {
                             return (
                                 <Carousel.Item key={index}>
-                                    <img src={backdrop}/>
+                                    <img src={`https://image.tmdb.org/t/p/original${image.file_path}`}/>
                                 </Carousel.Item>
                             )
                         })}

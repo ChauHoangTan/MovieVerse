@@ -8,12 +8,12 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 import Carousel from 'react-grid-carousel';
 import ListReaction from './ListReaction';
 
-function Details() {
+function Details({details}) {
 
     return ( 
         <div className='wrapper'>
 
-            <div className='containerBackground'>
+            <div className='containerBackground' style={{backgroundImage: `url('https://image.tmdb.org/t/p/original${details.backdropPath}')`}}>
                 <div className='setOverlay'>
                 </div>
                 
@@ -21,20 +21,22 @@ function Details() {
      
             <div className='details'>
                 <div className='avatar'>
-                    <img className='border border-primary-subtle rounded-1' src='https://images2.thanhnien.vn/Uploaded/nhuvnq/2022_12_09/02-8374.jpg' alt='avatar'/>
+                    <img className='border border-primary-subtle rounded-1' src={`https://image.tmdb.org/t/p/original${details.posterPath}`} alt='avatar'/>
                 </div>
                 <div className='info col'>
                     <div className='info1 row'>
-                        <div className='name fw-bold'>Wednesday ( 2022 )</div>  
-                        <div className='slogan fst-italic opacity-75'>Slogan: have fun for next day!</div>
+                        <div className='name fw-bold'>{details.name} ( {details.year} )</div>  
+                        <div className='slogan fst-italic opacity-75'>Tagline: {details.tagline}!</div>
                         <div className='category fw-bold field'>Category: 
-                            <span className='mx-2 my-1 badge text-bg-danger fs-6'>Action</span>
-                            <span className='mx-2 my-1 badge text-bg-danger fs-6'>Action</span>
+                            {details.category.map((item,index) => {
+                                return <span key={index} className='mx-1 my-1 badge text-bg-danger fs-6'>{item.name}</span>
+                            })}
+                            
                         </div>
 
                         <div className='rate d-flex align-items-center field'>
                             <div className='rating'>
-                                <Rating percent={7.5} width={50}/>
+                                <Rating percent={details.voteAverage} width={50}/>
                             </div>
                             
                             <span className='play mx-3 p-2 d-flex align-items-center btn btn-success'>
@@ -49,17 +51,21 @@ function Details() {
                             <div className='fw-bold'>
                                 Overview
                             </div>
-                            <div className='fs-6'>
-                            Thông minh, hay châm chọc và "chết trong lòng" một chút, 
-                            Wednesday Addams điều tra một vụ giết người liên hoàn trong khi có thêm bạn và cả kẻ thù mới học Học viện Nevermore.
-                            </div>
+                            <p className='fs-6'>{details.overview}</p>
                         </div>
 
                         <div className='author'>
                             <div className='field fw-bold'>
-                                Author
+                                Director
                             </div>
-                            <div className='fs-6'>Châu Hoàng Tấn</div>
+                            <p className='fs-6'>{details.author.map((person,index) => {
+                                if(index === 0){
+                                    return person.name
+                                }
+                                else{
+                                    return ", " + person.name
+                                }
+                            })}</p>
                             
                         </div>
                     </div>
@@ -70,31 +76,20 @@ function Details() {
 
                         <div className='image my-2'>
                         <Carousel cols={4} rows={1} gap={5} loop>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://cdn.britannica.com/56/243656-050-2E4A5036/Jenna-Ortega-2023.jpg'/>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://t0.gstatic.com/licensed-image?q=tbn:ANd9GcT_-iChxn42ud1RxIIJp6TOzx-1aZNqLq7tN2YaZ7a4fhiAb1GZbKnW3JCTXnI5tnqM'/>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSwv9COLsH5UDLazBxj5B1Jl67hYCRmZqhr_d5ZPccZzPDMY-tH'/>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYEkoIYAuXtfZzizSht2cXdmCdcobEQJ7VuCv6v-97-JBJSJTf'/>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTk9dN8WPvyOFrl5fOhs8ejWhsGyRERJWOMNvVXCDJdfkAwDzy7'/>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className='carousel-image rounded-1' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTRNL0o0ZaORWWJWy-_ktZZ42HujG_X9l2Zza_Uu1BrK4NQQxOG'/>
-                            </Carousel.Item>
+
+                            {details.cast.map((actor,index) => {
+                                return (
+                                    <Carousel.Item key={index}>
+                                        <img className='carousel-image rounded-1' src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}/>
+                                    </Carousel.Item>
+                                )
+                            })}
+                            
+                            
                         </Carousel>
                             {/* <img className='me-3 rounded-1' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTRNL0o0ZaORWWJWy-_ktZZ42HujG_X9l2Zza_Uu1BrK4NQQxOG'/> */}
                         </div>
 
-                        
-
-                        
                     </div>
                     
                 </div>

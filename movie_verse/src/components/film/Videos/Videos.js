@@ -13,11 +13,11 @@ function Videos({title, videos}) {
                 <div className='containerVideos'>
                     <Carousel>
 
-                        {videos.map( (url,index) => {
+                        {videos.map( (video,index) => {
                             return (
                                 <Carousel.Item key={index}>
                                     <iframe width='100%' className='iframe'
-                                        src={url}>
+                                        src={`https://www.youtube.com/embed/${video.key}`}>
                                     </iframe>
                                 </Carousel.Item>
                             )

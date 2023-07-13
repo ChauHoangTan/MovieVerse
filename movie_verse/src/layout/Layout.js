@@ -7,11 +7,18 @@ import Footer from './Footer';
 
 function Layout({ children }) {
     return (
-        <>
-            <Header />
-            <Outlet />
+        <div id='containerApp'>
+            <div id='header'>
+                <Header />
+            </div>
+            
+
+            <div id='outlet'>
+                <Outlet/>
+            </div>
+            
             <Footer />
-        </>);
+        </div>);
 }
 
 export default Layout;

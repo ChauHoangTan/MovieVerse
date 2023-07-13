@@ -63,4 +63,23 @@
     margin-left: 20px;
 }
 
+// #containerApp{
+//     position: relative;
+   
+// }
+
+#header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0.7;
+}
+
+// #outlet{
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+// }
 
