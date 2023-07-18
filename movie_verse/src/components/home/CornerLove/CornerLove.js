@@ -1,12 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 function CornerLove() {
     return (
         <div style={{ color: 'white', padding: '15px', marginRight: '3%', backgroundColor: '#312F2F', height: '20vh' }}>
             <div style={{ fontSize: '20px', fontWeight: '600' }}>
-                Little Corner Of Love
+                Little Corner Of Love <FontAwesomeIcon icon={faHeart} />
             </div>
             <div className='d-flex' style={{ marginBottom: '15px' }}>
                 <div style={{ flex: 1, height: '3px', backgroundColor: '#FFCA2B' }} />
