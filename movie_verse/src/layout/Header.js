@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation  } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import logo from '../assets/images/logo/logo_3.png'
 import search from '../assets/images/icon/search.png'
@@ -17,7 +17,7 @@ function Header() {
 
     return (
         <>
-            <Navbar expand="lg" className="bg-body-tertiary" style={{ backgroundColor: "#152544" }}>
+            <Navbar expand="lg" className="bg-body-tertiary" idName="header">
                 <Container fluid>
                     <img src={logo} alt="Logo" className="logo-page" style={{ marginRight: "100px" }} />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

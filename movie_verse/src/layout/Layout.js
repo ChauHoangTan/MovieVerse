@@ -11,12 +11,12 @@ function Layout({ children }) {
             <div id='header'>
                 <Header />
             </div>
-            
+
 
             <div id='outlet'>
-                <Outlet/>
+                <Outlet />
             </div>
-            
+
             <Footer />
         </div>);
 }
