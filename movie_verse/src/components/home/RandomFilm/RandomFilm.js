@@ -1,8 +1,10 @@
 function RandomFilm() {
     return (
-        <>
-            Hello
-        </>
+        <div>
+            <div>
+                RandomFilm
+            </div>
+        </div>
     );
 }
 
