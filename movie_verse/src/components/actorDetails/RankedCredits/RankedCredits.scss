@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Arima:wght@300;600&family=Asap:wght@600&display=swap');
+
+.wrapRankedCredits{
+
+    .typeMedia{
+        font-weight: bold;
+        font-size: 1.5rem;
+        text-decoration: underline red solid;
+        margin-top: 5%;
+    }
+
+    .showMedia{        
+        justify-content: space-around;
+        .containerMedia{
+            overflow: hidden;
+            margin-top: 3%;
+            border-radius: 5px;
+            position: relative;
+            margin: 2%;
+            img{
+                width: 100%;
+                height: fit-content;
+                transition: transform 0.3s ease;
+            }
+            
+            
+            .numberOfRank{
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0% 6%;
+                font-size: 75px;
+                font-weight: bold;
+                -webkit-text-stroke-width: 3px;
+                -webkit-text-stroke-color: rgb(0, 217, 255);
+                -webkit-text-fill-color: white;
+                font-family: sans-serif;
+                font-style: italic;
+                line-height: 1;
+                z-index: 1;
+                transition: transform 0.3s ease;
+            }
+            .rank-1{
+                -webkit-text-stroke-color: rgb(255, 0, 0);
+            }
+            .rank-2{
+                -webkit-text-stroke-color: rgb(255, 119, 0);
+            }
+            .rank-3{
+                -webkit-text-stroke-color: rgb(64, 255, 0);
+            }
+        }
+
+        .containerMedia:hover{
+            img{
+                transform: scale(1.2);
+            }
+            .numberOfRank{
+                transform: scale(1.2);
+            }
+        }
+
+    }
+
+    @media (max-width: 767px) {
+        .carousel-inner .carousel-item > div {
+            display: none;
+        }
+        .carousel-inner .carousel-item > div:first-child {
+            display: block;
+        }
+    }
+    
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        display: flex;
+    }
+    
+    .carousel-control-next,
+    .carousel-control-prev {
+        width: 8%;
+        opacity: 0;
+        transition: opacity 1s ease;
+       span{
+        display: none;
+       }
+    }
+    
+    .carousel-control-next:hover,
+    .carousel-control-prev:hover {
+       background-color: black;
+       opacity: 1;
+       span{
+        display: block;
+       }
+    }
+    
+    /* medium and up screens */
+    @media (min-width: 768px) {
+    
+        .carousel-inner .carousel-item-end.active,
+        .carousel-inner .carousel-item-next {
+            transform: translateX(25%);
+        }
+    
+        .carousel-inner .carousel-item-start.active, 
+        .carousel-inner .carousel-item-prev {
+            transform: translateX(-25%);
+        }
+    }
+    
+    .carousel-inner .carousel-item-end,
+    .carousel-inner .carousel-item-start { 
+        transform: translateX(0);
+    }
+}
+

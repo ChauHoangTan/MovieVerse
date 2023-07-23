@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link, useLocation  } from 'react-router-dom';
 import { useEffect } from 'react';
 import logo from '../assets/images/logo/logo_3.png'
@@ -15,6 +15,10 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function Header() {
 
+    const homeLinkRef = useRef(null);
+    const filmLinkRef = useRef(null)
+    const actorLinkRef = useRef(null)
+
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary" style={{ backgroundColor: "#152544" }}>
@@ -23,12 +27,10 @@ function Header() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            {/* <Nav.Link href="home" className="title">Home</Nav.Link>
-                            <Nav.Link href="film" className="title">Film</Nav.Link>
-                            <Nav.Link href="actor" className="title">Actor</Nav.Link> */}
-                            <Link to="/" className="title">Home</Link>
-                            <Link to="/film" className="title">Film</Link>
-                            <Link to="/actor" className="title">Actor</Link>
+
+                            <Link ref={homeLinkRef} to="/" className="title">Home</Link>
+                            <Link ref={filmLinkRef} to="/film" className="title">Film</Link>
+                            <Link ref={actorLinkRef} to="/actor" className="title">Actor</Link>
                             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="title">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">

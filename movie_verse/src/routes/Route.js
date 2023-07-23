@@ -6,6 +6,7 @@ import Layout from '../layout/Layout.js';
 import Home from '../components/home/Home.js';
 import Film from '../components/film/Film.js';
 import Actor from '../components/actor/Actor.js';
+import ActorDetails from '../components/actorDetails/ActorDetails.js'
 import Category from '../components/category/Category.js';
 import Notification from '../components/notification/Notification.js';
 import Account from '../components/account/Account.js';
@@ -19,6 +20,7 @@ function RouteLayout() {
                 <Route index element={<Home/>}/>
                 <Route path="film" element={<Film/>}/>
                 <Route path="actor" element={<Actor/>}/>
+                <Route path='/actor/:id' element={<ActorDetails/>}/>
                 <Route path="category" element={<Category/>}/>
                 <Route path="notification" element={<Notification/>}/>
                 <Route path="account" element={<Account/>}/>

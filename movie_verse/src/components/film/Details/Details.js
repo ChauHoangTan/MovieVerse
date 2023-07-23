@@ -10,12 +10,21 @@ import ListReaction from './ListReaction';
 
 function Details({details}) {
 
+    const [isHoverActor, setIsHoverActor] = useState(-1)
+
+    const handleHoverOnActor = (index) => {
+        setIsHoverActor(index)
+    }
+
+    const handleMouseLeaveInActor = () => {
+        setIsHoverActor(-1)
+    }
+
     return ( 
         <div className='wrapper'>
 
             <div className='containerBackground' style={{backgroundImage: `url('https://image.tmdb.org/t/p/original${details.backdropPath}')`}}>
-                <div className='setOverlay'>
-                </div>
+                <div className='setOverlay'></div>
                 
             </div>
      
@@ -80,7 +89,10 @@ function Details({details}) {
                             {details.cast.map((actor,index) => {
                                 return (
                                     <Carousel.Item key={index}>
-                                        <img className='carousel-image rounded-1' src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}/>
+                                        <div className={`wrapActor ${index === isHoverActor ? "actorHover" : ""}`} onMouseEnter={()=>handleHoverOnActor(index)} onMouseLeave={()=>handleMouseLeaveInActor()}>
+                                            <img className='carousel-image rounded-1' src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}/>
+                                            <div className={`${index === isHoverActor ? "actorName" : "d-none"} `}>{actor.name}</div>
+                                        </div>  
                                     </Carousel.Item>
                                 )
                             })}

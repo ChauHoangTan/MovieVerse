@@ -12,6 +12,8 @@ import ViewReviews from './Reviews/ViewReviews';
 import RelativeMovie from './RelativeMovie/RelativeMovie';
 import axios from 'axios'
 import { useEffect, useState } from 'react';
+import LoadingEffect from '../LoadingEffect';
+import { useLocation } from "react-router-dom";
 
 function Film() {
     const APIkey = 'a50a061b1989216e2c7931d35fc20896';
@@ -21,17 +23,16 @@ function Film() {
     let posters;
     let similars;
 
-    const listRelative = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_LXiYtEnDQEUx45iIut1F09t0TKFU5ZXusZsWORJ45ji0zDbq",
-    "https://upload.wikimedia.org/wikipedia/vi/b/b0/Avatar-Teaser-Poster.jpg",
-    "https://www.nautiljon.com/images/anime/00/75/summer_time_rendering_10057.webp",
-    "https://m.media-amazon.com/images/M/MV5BNGM0YTk3MWEtN2JlZC00ZmZmLWIwMDktZTMxZGE5Zjc2MGExXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
-    "https://m.media-amazon.com/images/M/MV5BNGM0YTk3MWEtN2JlZC00ZmZmLWIwMDktZTMxZGE5Zjc2MGExXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"]
-
     const [dataDetails, setDataDetails] = useState(null)
     const [dataVideos, setDataVideos] = useState(null)
     const [dataImages, setDataImages] = useState(null)
     const [dataSimilars, setDataSimilars] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
+
+    useEffect(() => {
+        // Bật tính năng scroll restoration
+        window.history.scrollRestoration = 'auto';
+      }, []);
 
     // thực hiện lấy data khi truy cập
     useEffect(() => {
@@ -41,11 +42,18 @@ function Film() {
             setDataVideos(resultVideos)
             setDataImages(resultImages)
             setDataSimilars(resultSimilar)
-            console.log(resultSimilar)
             setIsLoaded(true)
         }
         fetchData();
+
+        window.scrollTo(0,0)
+        
     }, [])
+
+    const {pathname} = useLocation();
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[pathname])
 
     // kiểm tra xem dữ liệu đã load xong chưa, nếu rồi thì render dữ liệu
     if(isLoaded) {
@@ -100,6 +108,7 @@ function Film() {
     //searchMovieWithKeyword("Wednesday")
     //findMovieDetails(19995)
 
+    
 
     return ( 
         <>
@@ -112,7 +121,7 @@ function Film() {
                     <ViewReviews title="Reviews" />
                     <RelativeMovie title="You may also like" similars={similars}/>
                 </>
-            ) : <div>Loading...</div>}
+            ) : <LoadingEffect />}
             
         </>
         

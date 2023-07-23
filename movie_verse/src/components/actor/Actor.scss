@@ -1,0 +1,189 @@
+#containerActor{
+    width: 100%;
+    background-color: black;
+
+    .wrapBanner{
+        width: 100%;
+        .containerBanner{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            img{
+                width: 100%;
+                height: 100%;
+                opacity: 0.7;
+            }
+        }
+        
+        .containerBanner::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(
+                to right,rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
+            );
+            
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .containerBanner::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(
+                to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .overlay{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: linear-gradient(
+                to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+    
+        .descriptionMovie{
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: auto;
+            margin-top: 15%;
+            margin-left: 12%;
+            position: absolute;
+            color: white;
+            z-index: 1;
+            .wrapMovieDetailsAndActorAvatar{
+                display: grid;
+                grid-template-columns: 80% 20%;
+                .movieDetails{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                }
+                .actorAvatar{
+                    margin-left: 5%;
+                    overflow: hidden;
+                    border-radius: 5px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    img{
+                        border-radius: 5px;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 1;
+                        
+                        transition: transform 0.3s ease;
+                    }
+                    .actorName{
+                        width: 100%;
+                        text-align: center;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        font-size: 1rem;
+                        background-color: rgb(81, 109, 100);
+                        opacity: 0;
+                        transition: opacity 0.3s ease;
+                    }
+                    
+                }
+                .actorAvatar:hover{
+                    img{
+                        transform: scale(1.2);
+                        
+                    }
+                    .actorName{
+                        opacity: 1;
+                    }
+                }
+            }
+            
+              
+        }
+
+        .carousel-control-next,
+        .carousel-control-prev {
+            width: 8%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        span{
+            display: none;
+        }
+        }
+        
+        .carousel-control-next:hover,
+        .carousel-control-prev:hover {
+        background-color: black;
+        opacity: 1;
+        span{
+            display: block;
+        }
+        }
+    }
+    
+    .containerActorsList{
+        display: flex;
+        justify-content: center;
+        .wrapActorsList{
+            width: 80%;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            .wrapActor{
+                position: relative;
+                margin: 1%;
+                border-radius: 2px;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                    transition: transform 0.3s ease;
+                }
+                
+                div{
+                    width: 100%;
+                    text-align: center;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    font-size: 1.5rem;
+                    background-color: rgb(81, 109, 100);
+                    opacity: 1;
+                }
+    
+            }
+            .wrapActor:hover{
+                img:hover{
+                    transform: scale(1.25);
+                    cursor: pointer;
+                }
+            }
+            
+        }
+    }
+
+}
+
+
+
+
+
+  
+
+  
