@@ -20,10 +20,7 @@
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-grid-carousel": "^1.0.1",
-<<<<<<< HEAD
     "react-redux": "^8.1.1",
-=======
->>>>>>> 3b539c3e294b39d07922488ebe9a4be8d32be50c
     "react-router-dom": "^6.14.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",

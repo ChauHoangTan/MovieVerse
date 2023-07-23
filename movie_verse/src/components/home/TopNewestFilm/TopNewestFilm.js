@@ -79,7 +79,7 @@ const show = ListFilmNewest.map((film) =>
 
 function TopNewestFilm() {
     return (
-        <div style={{ height: '100%' }}>
+        <div className='containerTopNewestFilm' style={{ height: '100%' }}>
             <Carousel auto>
                 {show}
             </Carousel>

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React, { useRef } from 'react';
-import { Link, useLocation  } from 'react-router-dom';
-=======
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
->>>>>>> 3b539c3e294b39d07922488ebe9a4be8d32be50c
 import { useEffect } from 'react';
 import logo from '../assets/images/logo/logo_3.png'
 import search from '../assets/images/icon/search.png'
@@ -20,10 +15,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function Header() {
 
-    const homeLinkRef = useRef(null);
-    const filmLinkRef = useRef(null)
-    const actorLinkRef = useRef(null)
-
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary" idName="header">
@@ -33,9 +24,9 @@ function Header() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
 
-                            <Link ref={homeLinkRef} to="/" className="title">Home</Link>
-                            <Link ref={filmLinkRef} to="/film" className="title">Film</Link>
-                            <Link ref={actorLinkRef} to="/actor" className="title">Actor</Link>
+                            <Link to="/" className="title">Home</Link>
+                            <Link to="/film" className="title">Film</Link>
+                            <Link to="/actor" className="title">Actor</Link>
                             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="title">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">

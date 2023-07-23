@@ -50,11 +50,6 @@ function Film() {
         
     }, [])
 
-    const {pathname} = useLocation();
-    useEffect(()=>{
-        window.scrollTo(0, 0);
-    },[pathname])
-
     // kiểm tra xem dữ liệu đã load xong chưa, nếu rồi thì render dữ liệu
     if(isLoaded) {
         details = {
