@@ -21,7 +21,7 @@
 }
 
 .logo-page {
-    width: 12vh;
+    height: 5.5vh;
 }
 
 .me-auto {
@@ -34,12 +34,14 @@
     margin-right: 70px;
 }
 
-.title:hover{
+.title:hover {
     color: rgb(224, 59, 59)
 }
 
 .bg-body-tertiary {
-    background-color: #152544 !important
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    height: 7vh !important;
+    box-shadow: 2px 4px 15px #000000
 }
 
 .right-container {
@@ -63,17 +65,17 @@
     margin-left: 20px;
 }
 
-#containerApp{
-    position: relative;
-}
+// #containerApp{
+//     position: relative;
+   
+// }
 
-#header{
+#header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    opacity: 0.7;
 }
 
 // #header{
@@ -82,9 +84,4 @@
 //     width: 100%;
 //     z-index: 100;
 // }
-
-#outlet{
-    width: 100%;
-
-}
 
