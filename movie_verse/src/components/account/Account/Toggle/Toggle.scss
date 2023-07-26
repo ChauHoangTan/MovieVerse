@@ -1,0 +1,61 @@
+
+
+.wrapperToggle{
+    width: 3.5rem;
+    height: 1.5rem;
+    background-color: rgb(62, 58, 58);
+    border-radius: 50px;
+    position: relative;
+    transition: 0.3s ease;
+    margin: 0;
+
+    .stateToggle{
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        transform: scale(0.9);
+        background-color: azure;
+        transition: 0.5s;
+    }
+    img{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        transition: 0.5s;
+        transform: scale(0.9);
+    }
+}
+
+.wrapperToggle.active{
+    width: 3.5rem;
+    height: 1.5rem;
+    background-color: rgb(96, 145, 149);
+    border-radius: 50px;
+    position: relative;
+    .stateToggle{
+        position: absolute;
+        left: 2rem;
+        top: 0;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        transform: scale(0.9);
+        background-color: rgb(29, 30, 30);
+        
+    }
+    img{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        transform: scale(0.9);
+    }
+}

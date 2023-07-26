@@ -52,7 +52,7 @@ function Header() {
                         </Nav>
                         <Nav>
                             <Button variant="warning" style={{ fontWeight: "bold" }}>
-                                SIGN IN
+                                <Link to="/login" className='text-dark text-decoration-none'>Sign In</Link>
                             </Button>
                         </Nav>
                     </Navbar.Collapse>

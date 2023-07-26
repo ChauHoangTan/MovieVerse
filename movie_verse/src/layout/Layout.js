@@ -8,9 +8,9 @@ import Footer from './Footer';
 function Layout({ children }) {
     return (
         <div id='containerApp'>
-            <div id='header'>
+           <div id='header'>
                 <Header />
-            </div>
+            </div> 
 
 
             <div id='outlet'>

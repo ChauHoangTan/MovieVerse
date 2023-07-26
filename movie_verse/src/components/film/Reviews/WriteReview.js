@@ -83,7 +83,7 @@ function WriteReview() {
                     onKeyDown={handleKeyDown}
                     />
 
-                <button className='sendReview fs-6 my-1 px-3 py-2 badge bg-success'>
+                <button className='fs-6 my-1 px-3 py-2 badge bg-success'>
                     <FontAwesomeIcon icon={faPaperPlane}/>
                 </button>
                 

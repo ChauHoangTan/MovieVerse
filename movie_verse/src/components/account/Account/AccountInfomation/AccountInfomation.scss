@@ -1,0 +1,43 @@
+.accountInfomation{
+    background-color: rgb(156, 185, 200);
+    box-shadow: 5px 5px 5px rgb(118, 114, 114);
+    border-radius: 0px 20px 0px 0px;
+
+    .formInfomation{
+        width: 100%;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.2rem;
+
+        .personalInfomation, .addressInfomation{
+            margin-top: 2%;
+            margin-bottom: 2%;
+            width: 95%;
+            padding: 2%;
+            background-color: transparent;
+            border-radius: 10px;
+            border: 2px solid rgba(235, 230, 230, 0.71);
+        }
+
+        .infomation{
+            display: grid;
+            grid-template-columns: auto auto;
+            div{
+                margin: 2%;
+                label{
+                    color: rgb(40, 41, 41);
+                }
+                
+                input{
+                    margin-top: 1%;
+                    appearance: none;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

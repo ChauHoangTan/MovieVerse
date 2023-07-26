@@ -115,6 +115,7 @@ function Film() {
                     <Backdrops title="Posters" images={posters} cols={6}/>
                     <ViewReviews title="Reviews" />
                     <RelativeMovie title="You may also like" similars={similars}/>
+                 
                 </>
             ) : <LoadingEffect />}
             

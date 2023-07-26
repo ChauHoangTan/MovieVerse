@@ -64,16 +64,10 @@ function ActorsList() {
     const navigate = useNavigate()
     const handleClickActor = (id) => {
         navigate(`/actor/${id}`)
-
         // Lưu vị trí của trang actor khi sang actorDetails
         sessionStorage.setItem('actorList', window.scrollY)
     }
     
-
-    useEffect(()=>{
-        window.scrollTo(0,200) 
-    },[])   
-     
     
     return ( 
         <>

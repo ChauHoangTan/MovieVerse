@@ -4,7 +4,7 @@ import { Carousel } from 'bootstrap';
 import BannerMovie from './BannerMovie';
 import './Actor.scss'
 import axios from 'axios';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ActorsList from './ActorsList';
 import ChangeOption from './ChangeOption/ChangeOption';
 import Pagination from '../Pagination/Pagination';
@@ -35,12 +35,38 @@ function Actor() {
     }
 
 
+    // lưu giá trị scroll mỗi khi scroll
+    // const [scrollY, setScrollY] = useState(0)
+    // useEffect(()=>{
+    //     setTimeout(()=> {
+    //         if(scrollY !== window.scrollY){
+    //             setScrollY(window.scrollY)
+    //             sessionStorage.setItem('actorList',window.scrollY)
+    //         }
+    //     }, 2000)
+    // },[scrollY])
+
+    // scroll trang ở giá trị trước đó khi khởi động hoặc quay lại từ trang khác
+    if ('scrollRestoration' in window.history) {
+        // Tắt tính năng scrollRestoration
+        window.history.scrollRestoration = 'manual';
+        console.log('manual')
+      }
     useEffect(()=>{
         
-        const scrollPosition = sessionStorage.getItem('actorList')
-        console.log(window.scrollTo(0,parseInt(scrollPosition)))
+        const handlePopstate = () => {
+            // Thực hiện cuộc hành động khi click nút back
+            const scrollY = sessionStorage.getItem('actorList')
+            window.scrollTo(0, parseInt(scrollY));
+          };
         
-    })
+          window.addEventListener('popstate', handlePopstate());
+        
+          return () => {
+            // Hủy lắng nghe sự kiện khi component unmount
+            window.removeEventListener('popstate', handlePopstate);
+          };
+    },[])
 
 
     return  (

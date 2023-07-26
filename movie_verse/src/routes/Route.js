@@ -9,7 +9,9 @@ import Actor from '../components/actor/Actor.js';
 import ActorDetails from '../components/actorDetails/ActorDetails.js'
 import Category from '../components/category/Category.js';
 import Notification from '../components/notification/Notification.js';
-import Account from '../components/account/Account.js';
+import Account from '../components/account/Account/Account.js'
+import LogIn from '../components/account/LogIn/Login.js';
+import SignUp from '../components/account/SignUp/SignUp.js';
 import NoPage from '../components/noPage/NoPage.js';
 
 function RouteLayout() {
@@ -24,6 +26,8 @@ function RouteLayout() {
                 <Route path="category" element={<Category/>}/>
                 <Route path="notification" element={<Notification/>}/>
                 <Route path="account" element={<Account/>}/>
+                <Route path="/login" element={<LogIn/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
                 <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
