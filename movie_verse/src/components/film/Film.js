@@ -1,19 +1,19 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Rating from '../Rating';
-import RoundIcon from '../RoundIcon';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlay, faList, faHeart, faBookmark, faStar } from '@fortawesome/free-solid-svg-icons'
-import Carousel from 'react-grid-carousel';
-import Details from './Details/Details';
-import Videos from './Videos/Videos';
-import Backdrops from './Backdrops/Backdrops';
-import ViewReviews from './Reviews/ViewReviews';
-import RelativeMovie from './RelativeMovie/RelativeMovie';
-import axios from 'axios'
-import { useEffect, useState } from 'react';
-import LoadingEffect from '../LoadingEffect';
-import { useLocation } from "react-router-dom";
+
+import Details from "./Details/Details";
+import Videos from "./Videos/Videos";
+import Backdrops from "./Backdrops/Backdrops";
+import ViewReviews from "./Reviews/ViewReviews";
+import RelativeMovie from "./RelativeMovie/RelativeMovie";
+import LoadingEffect from "../LoadingEffect";
+
+import axios from "axios";
+import { useState,useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import './Film.scss'
+
+
 
 function Film() {
     const APIkey = 'a50a061b1989216e2c7931d35fc20896';
@@ -29,6 +29,10 @@ function Film() {
     const [dataSimilars, setDataSimilars] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
 
+    const theme = useSelector(state => state.theme.theme)
+
+    // id phim
+    const {type,id} = useParams();
     useEffect(() => {
         // Bật tính năng scroll restoration
         window.history.scrollRestoration = 'auto';
@@ -37,7 +41,7 @@ function Film() {
     // thực hiện lấy data khi truy cập
     useEffect(() => {
         const fetchData = async () =>{
-            const {resultDetails,resultVideos, resultImages, resultSimilar} = await findDataMovie(19995)
+            const {resultDetails,resultVideos, resultImages, resultSimilar} = await findDataMovie(id)
             setDataDetails(resultDetails)
             setDataVideos(resultVideos)
             setDataImages(resultImages)
@@ -52,18 +56,35 @@ function Film() {
 
     // kiểm tra xem dữ liệu đã load xong chưa, nếu rồi thì render dữ liệu
     if(isLoaded) {
-        details = {
-            name: dataDetails.title,
-            tagline: dataDetails.tagline,
-            category: dataDetails.genres,
-            voteAverage: dataDetails.vote_average,
-            overview: dataDetails.overview,
-            author: dataDetails.credits.crew.filter(person => person.job==="Director"),
-            cast: dataDetails.credits.cast,
-            backdropPath: dataDetails.backdrop_path,
-            posterPath: dataDetails.poster_path,
-            year: dataDetails.release_date.slice(0,4)
+        if(type === 'movie'){
+            details = {
+                name: dataDetails.title,
+                tagline: dataDetails.tagline,
+                category: dataDetails.genres,
+                voteAverage: dataDetails.vote_average,
+                overview: dataDetails.overview,
+                author: dataDetails.credits.crew.filter(person => person.job==="Director"),
+                cast: dataDetails.credits.cast,
+                backdropPath: dataDetails.backdrop_path,
+                posterPath: dataDetails.poster_path,
+                year: dataDetails.release_date.slice(0,4)
+            }
+        }else{
+            details = {
+                name: dataDetails.name,
+                tagline: dataDetails.tagline,
+                category: dataDetails.genres,
+                voteAverage: dataDetails.vote_average,
+                overview: dataDetails.overview,
+                author: dataDetails.credits.crew.filter(person => person.job==="Director"),
+                cast: dataDetails.credits.cast,
+                backdropPath: dataDetails.backdrop_path,
+                posterPath: dataDetails.poster_path,
+                year: dataDetails.first_air_date.slice(0,4)
+            }
+            console.log(dataDetails, dataVideos, dataImages, dataSimilars)
         }
+        
 
         videos = dataVideos       
 
@@ -84,12 +105,12 @@ function Film() {
         
     // }
 
-    const findDataMovie = async (movieId) => {
+    const findDataMovie = async (id) => {
         try{
-            const responseDetails = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${APIkey}&append_to_response=credits&language=en-US`)
-            const responseVideos = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${APIkey}&language=en-US`)
-            const responseImages = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/images?api_key=${APIkey}`)
-            const responseSimilar = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${APIkey}&language=en-US&page=1`)
+            const responseDetails = await axios.get(`https://api.themoviedb.org/3/${type}/${id}?api_key=${APIkey}&append_to_response=credits&language=en-US`)
+            const responseVideos = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${APIkey}&language=en-US`)
+            const responseImages = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/images?api_key=${APIkey}`)
+            const responseSimilar = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/similar?api_key=${APIkey}&language=en-US&page=1`)
             const resultDetails = responseDetails.data
             const resultVideos = responseVideos.data.results
             const resultImages = responseImages.data
@@ -108,15 +129,15 @@ function Film() {
     return ( 
         <>
             {isLoaded ? (
-                <>
-                    <Details details={details}/>
-                    <Videos title="Videos" videos={videos}/>
-                    <Backdrops title="Backdrops" images={backdrops} cols={2}/>
-                    <Backdrops title="Posters" images={posters} cols={6}/>
-                    <ViewReviews title="Reviews" />
-                    <RelativeMovie title="You may also like" similars={similars}/>
+                <div className={`containerFilm ${theme}`}>
+                    <Details details={details} theme={theme}/>
+                    <Videos title="Videos" videos={videos} theme={theme}/>
+                    <Backdrops title="Backdrops" images={backdrops} cols={2} theme={theme}/>
+                    <Backdrops title="Posters" images={posters} cols={6} theme={theme}/>
+                    <ViewReviews title="Reviews"  theme={theme}/>
+                    <RelativeMovie title="You may also like" similars={similars} theme={theme}/>
                  
-                </>
+                </div>
             ) : <LoadingEffect />}
             
         </>

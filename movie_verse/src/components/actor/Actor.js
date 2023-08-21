@@ -9,13 +9,7 @@ import ActorsList from './ActorsList';
 import ChangeOption from './ChangeOption/ChangeOption';
 import Pagination from '../Pagination/Pagination';
 import LoadingEffect from '../LoadingEffect';
-import {
-    Link,
-    NavigationType,
-    useLocation,
-    useNavigationType
-  } from "react-router-dom";
-
+import { UseSelector, useSelector } from 'react-redux';
 
 export const ActorContext = createContext();
 function Actor() {
@@ -26,6 +20,8 @@ function Actor() {
     const [isLoadedBanner, setIsLoadedBanner] = useState(false)
     const [isLoadedActorList, setIsLoadedActorList] = useState(false)
     
+    const theme = useSelector(state => state.theme.theme)
+
     let checkBoth = false
     if(isLoadedBanner && isLoadedActorList ){
         checkBoth = true  
@@ -73,7 +69,7 @@ function Actor() {
        
             <ActorContext.Provider value={{currentPage,setCurrentPage,totalPages,setTotalPages,option,setOption, 
             isLoadedBanner, setIsLoadedBanner, isLoadedActorList, setIsLoadedActorList}}> 
-                <div id='containerActor'>
+                <div class={`containerActor ${theme}`}>
                     <BannerMovie/>
                     {checkBoth ? <ChangeOption /> : ''}
                     

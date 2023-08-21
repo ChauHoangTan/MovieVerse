@@ -1,22 +1,72 @@
+$dark-color-text: #D48872;
+$light-color-text: #416390;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(114, 139, 157);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
+
 
 .wrapperField{
-    background-color: black;
     font-size: 25px;
-    color: aliceblue;
     font-weight: bold;
     .content{
         padding-top: 2%;
-        margin-left: 10%;
+        
         .containerVideos{
-            width: 95%;
+            width: 100%;
         }
         
         .iframe{
-            height: 80vh;
+            
             width: 100%;
         }
         
         
+    }
+
+    @media (min-width: 1024px){
+        .content{
+            margin-left: 8%;
+            width: 85%;
+        }
+        .iframe{
+            height: 80vh;
+        }
+        
+        
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px){
+        .content{
+            margin-left: 2%;
+            width: 95%;
+        }
+        .iframe{
+            height: 70vh;
+        }
+      
+    }
+
+    @media (min-width: 428px) and (max-width: 767px){
+        .content{
+            margin-left: 2%;
+            width: 95%;
+        }
+        .iframe{
+            height: 50vh;
+        }
+      
+    }
+
+    @media (max-width: 428px){
+        .content{
+            margin-left: 2%;
+            width: 95%;
+        }
+        .iframe{
+            height: 40vh;
+        }
+      
     }
     
     
@@ -25,4 +75,5 @@
     text-decoration: underline rgb(226, 34, 5) solid 3px;
    
 }
+
 

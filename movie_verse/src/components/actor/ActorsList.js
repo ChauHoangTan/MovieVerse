@@ -79,7 +79,7 @@ function ActorsList() {
                             return (
                                 <div className='wrapActor' onClick={()=>handleClickActor(actor.id)}>
                                     <img className='' src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} />
-                                    <div className='bg-secondary text-light px-2'>{actor.name}</div>
+                                    <div className='bg-secondary text-light actorName'>{actor.name}</div>
                                 </div>
                             )
                         })

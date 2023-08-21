@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Details.scss'
 import Rating from '../../Rating';
-import RoundIcon from '../../RoundIcon';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
-import Carousel from 'react-grid-carousel';
-import ListReaction from './ListReaction';
 
-function Details({details}) {
+import ListReaction from './ListReaction';
+import { useEffect } from 'react';
+
+function Details({details, theme}) {
+
+    console.log(details)
 
     const [isHoverActor, setIsHoverActor] = useState(-1)
 
@@ -20,20 +23,47 @@ function Details({details}) {
         setIsHoverActor(-1)
     }
 
+    useEffect(()=>{
+        let items = document.querySelectorAll(`.carousel.film .carousel-item`)
+
+            items.forEach((el) => {
+            
+                const minPerSlide = 4
+                if(el.childElementCount < minPerSlide){
+                    let next = el.nextElementSibling
+                    for (var i=1; i<minPerSlide; i++) {
+                        if (!next) {
+                        // wrap carousel by using first child
+                        next = items[0]
+                        }
+                        let cloneChild = next.cloneNode(true)
+                        el.appendChild(cloneChild.children[0])
+                        next = next.nextElementSibling
+                        
+                    }
+                }
+                
+            })
+            
+    },[])
+
     return ( 
-        <div className='wrapper'>
+        <div className={`wrapper ${theme}`}>
 
             <div className='containerBackground' style={{backgroundImage: `url('https://image.tmdb.org/t/p/original${details.backdropPath}')`}}>
                 <div className='setOverlay'></div>
-                
             </div>
      
             <div className='details'>
+                <div className='backdrop'>
+                    <img className='border border-primary-subtle rounded-1' src={`https://image.tmdb.org/t/p/original${details.backdropPath}`} alt='avatar'/>
+                    <div className='overlayBackdrop'></div>
+                </div>
                 <div className='avatar'>
                     <img className='border border-primary-subtle rounded-1' src={`https://image.tmdb.org/t/p/original${details.posterPath}`} alt='avatar'/>
                 </div>
-                <div className='info col'>
-                    <div className='info1 row'>
+                <div className='info'>
+                    <div className='info1'>
                         <div className='name fw-bold'>{details.name} ( {details.year} )</div>  
                         <div className='slogan fst-italic opacity-75'>Tagline: {details.tagline}!</div>
                         <div className='category fw-bold field'>Category: 
@@ -80,28 +110,38 @@ function Details({details}) {
                     </div>
                     
                     {/* phần carousel cho dàn cast */}
-                    <div className='info2 row field fw-bold'>
-                        <div>Cast</div>
-
-                        <div className='image my-2'>
-                        <Carousel cols={4} rows={1} gap={5} loop>
-
-                            {details.cast.map((actor,index) => {
-                                return (
-                                    <Carousel.Item key={index}>
-                                        <div className={`wrapActor ${index === isHoverActor ? "actorHover" : ""}`} onMouseEnter={()=>handleHoverOnActor(index)} onMouseLeave={()=>handleMouseLeaveInActor()}>
-                                            <img className='carousel-image rounded-1' src={`https://image.tmdb.org/t/p/original${actor.profile_path}`}/>
-                                            <div className={`${index === isHoverActor ? "actorName" : "d-none"} `}>{actor.name}</div>
-                                        </div>  
-                                    </Carousel.Item>
+                    <div className='field fw-bold'>
+                        Caster
+                    </div>
+                    <div id={`carouselFilm`} className={`carousel film slide`}>
+                    
+                        <div className="carousel-inner">
+                            {details.cast.map((actor, index) => {
+                                return(
+                                <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                    <div >
+                                        <div className='containerInfo'>
+                                            <img src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} alt="..."/>
+                                            <span className='actorName'>{actor.name}</span>
+                                        </div>
+                                        
+                                        <div className='overlay'></div>
+                                    </div>   
+                                </div>
                                 )
                             })}
                             
-                            
-                        </Carousel>
-                            {/* <img className='me-3 rounded-1' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTRNL0o0ZaORWWJWy-_ktZZ42HujG_X9l2Zza_Uu1BrK4NQQxOG'/> */}
+                        
                         </div>
-
+                        <button className="carousel-control-prev" type="button" data-bs-target={`#carouselFilm`} data-bs-slide="prev">
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Previous</span>
+                        </button>
+                        <button className="carousel-control-next" type="button" data-bs-target={`#carouselFilm`} data-bs-slide="next">
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="visually-hidden">Next</span>
+                        </button>
+                            
                     </div>
                     
                 </div>

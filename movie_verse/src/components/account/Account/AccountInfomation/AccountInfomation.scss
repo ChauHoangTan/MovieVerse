@@ -1,8 +1,9 @@
 .accountInfomation{
-    background-color: rgb(156, 185, 200);
+    
     box-shadow: 5px 5px 5px rgb(118, 114, 114);
     border-radius: 0px 20px 0px 0px;
 
+    
     .formInfomation{
         width: 100%;
         background-color: transparent;
@@ -10,10 +11,10 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: 1.2rem;
+        
 
         .personalInfomation, .addressInfomation{
-            margin-top: 2%;
+            margin-top: 1%;
             margin-bottom: 2%;
             width: 95%;
             padding: 2%;
@@ -24,18 +25,169 @@
 
         .infomation{
             display: grid;
-            grid-template-columns: auto auto;
+            
             div{
+                position: relative;
                 margin: 2%;
+                margin-top: 25px;
                 label{
-                    color: rgb(40, 41, 41);
+                    position: absolute;
+                    top: 6px;
+                    left: 5px;
+                    transition: top 0.3s ease;
+                    opacity: 50%;
                 }
-                
                 input{
+                    width: 90%;
                     margin-top: 1%;
                     appearance: none;
-                    border: none;
+                    
+                    border-radius: 5px;
                     background-color: transparent;
+                    padding: 2px 6px;
+                }
+                
+                input:focus{
+                    
+                    outline: none;
+                }
+
+                #firstName:focus ~ .lblFirstName,
+                #firstName.notEmpty ~ .lblFirstName
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #lastName:focus ~ .lblLastName,
+                #lastName.notEmpty ~ .lblLastName
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #phoneNumber:focus ~ .lblPhoneNumber,
+                #phoneNumber.notEmpty ~ .lblPhoneNumber
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #emailAddress:focus ~ .lblEmailAddress,
+                #emailAddress.notEmpty ~ .lblEmailAddress
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #country:focus ~ .lblCountry,
+                #country.notEmpty ~ .lblCountry
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #city:focus ~ .lblCity,
+                #city.notEmpty ~ .lblCity
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #district:focus ~ .lblDistrict,
+                #district.notEmpty ~ .lblDistrict
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+                #ward:focus ~ .lblWard,
+                #ward.notEmpty ~ .lblWard
+                {
+                    top: -20px;
+                    opacity: 100%;
+                }
+
+
+            }
+        }
+    }
+
+    @media (min-width: 1285px){
+        .hightlight{
+            font-size: 1.2rem;
+        }
+        .formInfomation{
+            font-size: 1.1rem;
+            .infomation{
+                grid-template-columns: auto auto;
+                
+            }
+        }
+    }
+
+    @media (max-width: 1284px){
+        .hightlight{
+            font-size: 1.1rem;
+        }
+        .formInfomation{
+            font-size: 1rem;
+            .infomation{
+                grid-template-columns: auto auto;
+            }
+        }
+    }
+
+    @media (min-width:500px) and (max-width: 800px){
+        .hightlight{
+            font-size: 1rem;
+        }
+        .formInfomation{
+            font-size: 0.9rem;
+            .infomation{
+                grid-template-columns: auto;
+            }
+        }
+    }
+
+    @media(max-width: 499px){
+        .hightlight{
+            font-size: 0.9rem;
+        }
+        .formInfomation{
+            font-size: 0.8rem;
+            .infomation{
+                grid-template-columns: auto;
+                
+            }
+        }
+    }
+}
+
+.accountInfomation.light{
+    .formInfomation{
+        .infomation{
+            div{
+                input{
+                    border: 2px solid rgb(3, 82, 42);
+                }
+                input:focus{
+                    box-shadow: 0px 0px 2px green;
+                }
+            }
+        }
+    }
+}
+
+.accountInfomation.dark{
+    .formInfomation{
+        .infomation{
+            div{
+                input{
+                    border: 2px solid rgb(203, 124, 13);
+                }
+                input:focus{
+                    box-shadow: 0px 0px 2px rgb(232, 197, 126);
                 }
             }
         }

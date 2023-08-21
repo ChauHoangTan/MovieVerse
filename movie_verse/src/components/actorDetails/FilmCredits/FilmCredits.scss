@@ -9,7 +9,7 @@
 
     .showMedia{
         display: grid;
-        grid-template-columns: 24% 24% 24% 24%;
+        
         justify-content: space-around;
         div{
             overflow: hidden;
@@ -32,6 +32,30 @@
         }
         span:hover{
             color: rgb(224, 35, 35);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .showMedia{
+            grid-template-columns: 24% 24% 24% 24%;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .showMedia{
+            grid-template-columns: 33% 33% 33%;
+        }
+    }
+
+    @media (min-width: 428px) and (max-width: 767px) {
+        .showMedia{
+            grid-template-columns: 48% 48%;
+        }
+    }
+
+    @media (max-width: 427px) {
+        .showMedia{
+            grid-template-columns: 48% 48%;
         }
     }
 }

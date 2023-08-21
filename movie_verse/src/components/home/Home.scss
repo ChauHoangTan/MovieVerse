@@ -1,0 +1,46 @@
+$dark-color-text: #f4eae8;
+$light-color-text: #000000;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(223, 223, 229);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
+
+.wrapperHome{
+    .listFilm{
+        margin-top: 6%;
+    }
+    .banner{
+        margin-left: 7%;
+        text-decoration: underline 2px solid rgb(217, 0, 0);
+    }
+}
+
+.wrapperHome.light{
+    background-color: $light-color-bg;
+    .banner{
+        color: $light-color-text;
+    }
+}
+
+.wrapperHome.dark{
+    background-color: $dark-color-bg;
+    .banner{
+        color: $dark-color-text;
+    }
+}
+
+.test{
+    display: flex;
+    div:nth-child(-n+2){
+        width: calc(100% );
+        img{
+            width: 100%;
+        }
+    }
+    div:nth-child(n+3){
+        display: none;
+    }
+
+
+
+}

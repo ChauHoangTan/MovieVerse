@@ -33,14 +33,14 @@ function SingleReview({review}) {
 
     return ( 
         <div className='pt-1 pb-3'>
-            <div className='pt-2 border border-secondary-subtle rounded-1 w-75'>
+            <div className='singleReview pt-2 rounded-2 w-75'>
                 <div className='px-2 py-1 d-flex align-items-center fw-normal fs-6'>
                     <FontAwesomeIcon icon={faUser} className='border border-1 rounded-5 p-2 text-danger'/>  
                     <span className='mx-2 '>{review.name}</span>
                     <div className='date ms-auto text-light-emphasis'>{review.date}</div>
                 </div>
 
-                <div className='px-3 py-1 d-flex align-items-center fw-normal fs-6 text-secondary fst-italic'>
+                <div className='px-3 py-1 d-flex align-items-center fw-normal fs-6 fst-italic overview'>
                 {review.overview}
                 </div>
 

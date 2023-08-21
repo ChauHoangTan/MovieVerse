@@ -1,17 +1,36 @@
+$dark-color-text: #D48872;
+$light-color-text: #416390;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(114, 139, 157);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
 
 .wrapperBackdrops{
-    background-color: black;
     padding-top: 2%;
     font-size: 25px;
-    color: aliceblue;
     .contentBackdrops{
-        margin-left: 10%;
-        width: 85%;
+        
     
         img{
             width: 98%;
             height: 100%;
         }
     }
+
+    @media (min-width: 1024px){
+        margin-left: 8%;
+        width: 85%;
+    }
+
+    @media (max-width: 1023px){
+        margin-left: 2%;
+        width: 95%;
+    }
+
+    
 }
+
+
+
+
 

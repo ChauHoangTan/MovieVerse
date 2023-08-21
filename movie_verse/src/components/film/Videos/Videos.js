@@ -1,10 +1,10 @@
 import './Videos.scss'
 import React from 'react';
 import Carousel from 'react-grid-carousel';
-function Videos({title, videos}) {
+function Videos({title, videos, theme}) {
     return ( 
     <>
-        <div className='wrapperField'>
+        <div className={`wrapperField ${theme}`}>
             <div className='content'>
                 <div className='titleName'>
                     {title}

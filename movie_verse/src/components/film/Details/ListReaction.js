@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import RoundIcon from '../../RoundIcon';
 import { faList, faHeart, faBookmark, faStar, faCircleMinus, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios'
+import { useParams } from 'react-router-dom';
 
 function ListReaction() {
 
@@ -12,38 +14,98 @@ function ListReaction() {
     const [addRating, setAddRating] = useState(false)
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
+    const {type, id} = useParams()
+    console.log(type,id)
+    useEffect(() => {
+        const fetchConnect = async () => {
+            try{
+                const response = await axios.post(`http://localhost:4000/${type}/${id}`,{
+                    token: sessionStorage.getItem('token'),
+                    first_request: true,
+
+                }) 
+                setAddPlaylist(response.data.playList);
+                setAddFavorite(response.data.favorite);
+                setAddBookmark(response.data.bookmark);
+                if(response.data.rating > 0){
+                    setAddRating(true)
+                }
+                
+                setRating(response.data.rating);
+                console.log(response)
+
+            }catch(err){
+                console.log(err)
+            }  
+        }
+        fetchConnect()
+    },[])
+
+    const sendUpdateData = async (field, check) => {
+        // thực hiện cập nhật dữ liệu
+        try{
+            await axios.post(`http://localhost:4000/${type}/${id}`,{
+                token: sessionStorage.getItem('token'),
+                [field]: check,
+
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const handlePlaylist = () => {
         if(addPlaylist){
             setAddPlaylist(false)
+            sendUpdateData('play_list', false)
         }else{
             setAddPlaylist(true)
+            sendUpdateData('play_list', true)
         }
     }
 
     const handleFavorite = () => {
         if(addFavorite){
             setAddFavorite(false)
+            sendUpdateData('favorite', false)
         }else{
             setAddFavorite(true)
+            sendUpdateData('favorite', true)
         }
     }
 
     const handleBookmark = () => {
         if(addBookmark){
             setAddBookmark(false)
+            sendUpdateData('bookmark', false)
         }else{
             setAddBookmark(true)
+            sendUpdateData('bookmark', true)
         }
     }
 
+    const sendUpdateDataRating = async (field, check, rate) => {
+        // thực hiện cập nhật dữ liệu
+        try{
+            await axios.post(`http://localhost:4000/${type}/${id}`,{
+                token: sessionStorage.getItem('token'),
+                [field]: check,
+                rate: rate,
+
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
     const handleRating = (index) => {
         if(index === 0){
             setAddRating(false)
             setRating(false)
+            sendUpdateDataRating('rating', false, index)
         }else{
             setAddRating(true)
             setRating(index)
+            sendUpdateDataRating('rating', true, index)
         }
         
     }
@@ -70,11 +132,11 @@ function ListReaction() {
                                         val = hover
                                     }
                                     return <FontAwesomeIcon icon={faStar} 
-                                    className={`iconStar ${(index+1 <= val) ? "isTarget" : ""}`} 
-                                    key={index} 
-                                    onClick={()=>handleRating(index+1)} 
-                                    onMouseEnter={()=>setHover(index+1)} 
-                                    onMouseLeave={()=>setHover(null)}/>
+                                        className={`iconStar ${(index+1 <= val) ? "isTarget" : ""}`} 
+                                        key={index} 
+                                        onClick={()=>handleRating(index+1)} 
+                                        onMouseEnter={()=>setHover(index+1)} 
+                                        onMouseLeave={()=>setHover(null)}/>
                                 })}
 
                             </div>

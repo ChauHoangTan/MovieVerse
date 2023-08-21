@@ -1,7 +1,9 @@
-#containerActor{
+$light-color-bg: #d6d6d6;
+$light-color-text: #000000;
+$dark-color-bg: #000000;
+$dark-color-text: #ffffff;
+.containerActor{
     width: 100%;
-    background-color: black;
-
     .wrapBanner{
         width: 100%;
         .containerBanner{
@@ -22,10 +24,6 @@
             left: 0;
             width: 20%;
             height: 100%;
-            background: linear-gradient(
-                to right,rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
-            );
-            
             z-index: 1;
             pointer-events: none;
         }
@@ -37,9 +35,6 @@
             right: 0;
             width: 20%;
             height: 100%;
-            background: linear-gradient(
-                to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
-            );
             z-index: 1;
             pointer-events: none;
         }
@@ -50,11 +45,9 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 20%;
-            background: linear-gradient(
-                to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%
-            );
-            z-index: 1;
+            height: 40%;
+            
+         
             pointer-events: none;
         }
     
@@ -63,18 +56,25 @@
             left: 0;
             width: 70%;
             height: auto;
-            margin-top: 15%;
-            margin-left: 12%;
+            margin-top: 10%;
+            margin-left: 10%;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            padding: 1rem;
+            
             position: absolute;
-            color: white;
             z-index: 1;
             .wrapMovieDetailsAndActorAvatar{
                 display: grid;
                 grid-template-columns: 80% 20%;
                 .movieDetails{
                     width: 100%;
-                    display: flex;
-                    align-items: center;
+                    
+                    display: block;
+                    .titleMovie{
+                        font-weight: bold;
+                    }
+                    
                 }
                 .actorAvatar{
                     margin-left: 5%;
@@ -131,11 +131,93 @@
         
         .carousel-control-next:hover,
         .carousel-control-prev:hover {
-        background-color: black;
+        background-color: #000000;
         opacity: 1;
         span{
             display: block;
         }
+        }
+
+        @media (min-width: 1024px){
+            
+            
+            .titleMovie{
+                font-size: 2rem;
+            }
+        }
+    
+        @media (min-width: 768px) and (max-width: 1023px){
+            .titleMovie{
+                font-size: 1.8rem;
+            }
+            .overview{
+                max-height: calc(1.8rem*4);
+                width: 100%;
+            
+                overflow: hidden;
+                position: relative;
+                display: -webkit-box;
+                -webkit-line-clamp: 5; /* Số dòng tối đa */
+                -webkit-box-orient: vertical;
+            }
+            
+          
+        }
+    
+        @media (min-width: 451px) and (max-width: 767px){
+            
+            .titleMovie{
+                font-size: 1.3rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .genres{
+                display: none;
+            }
+            .overview{
+                max-height: calc(1.6rem*2);
+                width: 100%;
+            
+                overflow: hidden;
+                position: relative;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* Số dòng tối đa */
+                -webkit-box-orient: vertical;
+            }
+            .content{
+                margin-left: 2%;
+                width: 95%;
+            }
+            
+          
+        }
+    
+        @media (max-width: 450px){
+            .titleMovie{
+                font-size: 1.3rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .play{
+                font-size: 10px;
+            }
+            .genres{
+                display: none;
+            }
+            .overview{
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .content{
+                margin-left: 2%;
+                width: 95%;
+            }
+            
+          
         }
     }
     
@@ -145,7 +227,7 @@
         .wrapActorsList{
             width: 80%;
             display: grid;
-            grid-template-columns: 25% 25% 25% 25%;
+            
             .wrapActor{
                 position: relative;
                 margin: 1%;
@@ -162,7 +244,7 @@
                     position: absolute;
                     bottom: 0;
                     left: 0;
-                    font-size: 1.5rem;
+                    
                     background-color: rgb(81, 109, 100);
                     opacity: 1;
                 }
@@ -176,11 +258,113 @@
             }
             
         }
+
+        @media (min-width: 1024px){
+            
+            
+            .wrapActorsList{
+                grid-template-columns: 25% 25% 25% 25%;
+                div{
+                    font-size: 1.2rem;
+                }
+            }
+            
+          
+        }
+    
+        @media (min-width: 768px) and (max-width: 1023px){
+            
+            .wrapActorsList{
+                grid-template-columns: 25% 25% 25% 25%;
+                div{
+                    font-size: 1rem;
+                }
+            }
+            
+            
+          
+        }
+    
+        @media (min-width: 428px) and (max-width: 767px){
+            
+            .wrapActorsList{
+                grid-template-columns: 33% 33% 33%;
+                div{
+                    font-size: 0.8rem;
+                }
+            }
+            
+            
+          
+        }
+    
+        @media (max-width: 428px){
+           
+            .wrapActorsList{
+                grid-template-columns: 50% 50%;
+                div{
+                    font-size: 0.7rem;
+                }
+            }
+            
+            
+          
+        }
     }
+
+
 
 }
 
+.containerActor.light{
+    color: $light-color-text;
+    background-color: $light-color-bg;
+    
 
+    .wrapBanner{
+        background-color: #646464;
+        .containerBanner::before{
+            
+        }
+        .containerBanner::after{
+            
+        }
+        .overlay{
+            background: linear-gradient(
+                to top, $light-color-bg 0%, rgba(0, 0, 0, 0) 100%
+            );
+        }
+    }
+
+    
+}
+
+.containerActor.dark{
+    color: $dark-color-text;
+    background-color: $dark-color-bg;
+
+    
+    .wrapBanner{
+        background-color: #000000;
+        .containerBanner::before{
+            background: linear-gradient(
+                to right,rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
+            );
+        }
+        .containerBanner::after{
+            background: linear-gradient(
+                to left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%
+            );
+        }
+        .overlay{
+            background: linear-gradient(
+                to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%
+            );
+        }
+    }
+    
+
+}
 
 
 

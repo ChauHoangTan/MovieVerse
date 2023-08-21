@@ -1,5 +1,11 @@
+$dark-color-text: #D48872;
+$light-color-text: #000000;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(215, 214, 233);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
+
 .wrapperAccount{
-    background-color: rgb(215, 214, 233);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -14,8 +20,8 @@
             position: absolute;
             bottom: 10%;
             right: 5%;
-
-            background-color: rgb(103, 96, 96,0.4);
+            color: rgb(119, 53, 48);
+            background-color: rgba(190, 173, 173, 0.4);
             border: 2px solid rgba(141, 126, 126, 0.8);
             padding: 8px;
             border-radius: 10px;
@@ -31,11 +37,9 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            transform:  translate(50%, 60%);
+            
             .avatar{
-                
-                width: 12.5rem;
-                height: 12rem;
+            
                 border-radius: 50%;
                 
             }
@@ -48,26 +52,31 @@
         
         }
         
+        .highlight{
+            font-size: 1.3rem;
+        }
     }
 
+
     .containerAccount{
-        margin-top: 10rem;
+        
         width: 98%;
         overflow: hidden;
         display: grid;
-        grid-template-columns: 20% 79%;
+        
        
         .field{
             padding: 2% 3%;
             margin-right: 5%;
-            background-color: rgb(156, 185, 200);
+            
             box-shadow: 5px 5px 5px rgb(118, 114, 114);
             border-radius: 20px 0px 0px 0px;
             align-self: self-start;
             > div{
                 margin: 10px 7px;
-                font-size: 1.2rem;
+
                 font-weight:500;
+                
                 .icon{
                     float: right;
                 }   
@@ -88,5 +97,132 @@
         
         
     }
+
+    @media (min-width: 1285px){
+        
+        .containerAccount{
+            margin-top: 10rem;
+            grid-template-columns: 20% 79%;
+            .field{
+                >div{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .wrapAvatar{
+            transform:  translate(50%, 60%);
+            .avatar{
+                width: 12.2rem;
+                height: 12rem;
+            }
+        }
+    }
+
+    @media (min-width:801px) and (max-width: 1284px){
+        .headInfo{
+            height: 45vh;
+            .highlight{
+                font-size: 1.2rem;
+            }
+        }
+        .containerAccount{
+            margin-top: 10rem;
+            grid-template-columns: 25% 74%;
+            .field{
+                >div{
+                    font-size: 1.1rem;
+                }
+            }
+        }
+        .wrapAvatar{
+            transform:  translate(40%, 60%);
+            .avatar{
+                width: 11.2rem;
+                height: 11rem;
+            }
+        }
+    }
+
+    @media (min-width:500px) and (max-width: 800px){
+        .headInfo{
+            height: 40vh;
+            .highlight{
+                font-size: 1.1rem;
+            }
+        }
+        .containerAccount{
+            margin-top: 10rem;
+            grid-template-columns: 35% 64%;
+            .field{
+                >div{
+                    font-size: 1rem;
+                }
+            }
+        }
+        .wrapAvatar{
+            transform:  translate(20%, 60%);
+            .avatar{
+                width: 9.2rem;
+                height: 9rem;
+            }
+        }
+    }
+
+    @media (max-width: 499px){
+        .headInfo{
+            height: 30vh;
+            .highlight{
+                font-size: 0.9rem;
+            }
+        }
+        .containerAccount{
+            margin-top: 6rem;
+            grid-template-columns: 35% 64%;
+            .field{
+                >div{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+        .wrapAvatar{
+            transform:  translate(5%, 60%);
+            .avatar{
+                width: 8.2rem;
+                height: 8rem;
+            }
+        }
+    }
     
+}
+
+.wrapperAccount.light{
+    background-color: $light-color-bg;
+    color: $light-color-text;
+    .containerAccount{
+        .field{
+            background-color: $light-color-menu;
+        }
+        .viewingHistory{
+            background-color: $light-color-menu;
+        }.accountInfomation{
+            background-color: $light-color-menu;
+        }
+    }
+}
+
+.wrapperAccount.dark{
+    background-color: $dark-color-bg;
+    color: $dark-color-text;
+    .containerAccount{
+        .field{
+            background-color: $dark-color-menu;
+        }
+        .viewingHistory{
+            background-color: $dark-color-menu;
+        }
+        .accountInfomation{
+            background-color: $dark-color-menu;
+        }
+    }
 }

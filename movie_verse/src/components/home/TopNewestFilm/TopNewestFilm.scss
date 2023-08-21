@@ -1,72 +1,155 @@
-.backgroundContainer {
-    height: 100vh;
-    width: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-image: url('https://toigingiuvedep.vn/wp-content/uploads/2022/12/hinh-anh-wednesday-lam-hinh-nen-may-tinh.jpg');
-}
+$dark-color-text: #f4eae8;
+$light-color-text: #416390;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(223, 223, 229);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
 
-#header {
+
+#header{
     position: absolute;
 }
 
-// .carousel-indicators {
-//     text-align: right;
-//     float: right;
-//     right: 2% !important;
-//     left: inherit;
-// }
 .containerTopNewestFilm{
-    .carousel-indicators button {
-        width: 0.7rem !important;
-        height: 0.7rem !important;
-        border-radius: 50%;
-    }
-    
-    .carousel-indicators button:not(:first-child) {
-        margin-left: 0.25rem;
-    }
-    
-    .carousel-indicators .active {
-        background-color: #c90808;
-    }
-    
-    .carousel-control-prev {
-        left: -5%;
-    }
-    
-    .carousel-control-next {
-        right: -5%;
-    }
-    
-    .content {
+    color: $dark-color-text;
+    .carousel-item{
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      .wrapInfoMovie{
         position: absolute;
-        width: 40%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6) !important;
         margin-top: 7vh;
-        margin-left: 0 !important;
-        color: white;
-        padding-left: 5%;
-        padding-bottom: 20px;
+        top: 0;
+        left: 0;
+        
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        .info{
+            .titleFilm{
+              font-size: 2rem;
+            }
+            margin-top: 15%;
+            margin-left: 20%;
+            font-size: 20px;
+        }
+
+      }
+
+      .overlay{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        
+        
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .carousel-item{
+        .wrapInfoMovie{
+          width: 45%;
+        }
+        .overlay{
+          height: 15%;
+        }
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .carousel-item{
+        .wrapInfoMovie{
+          width: 60%;
+          .info{
+            .infoOverflow{
+              .overview{
+                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 96%;
+              }
+              
+            }
+            .titleFilm{
+              font-size: 1.6rem;
+            }
+            .btn-success{
+              font-size: 15px;
+            }
+            margin-top: 10%;
+          }
+        }
+        .overlay{
+          height: 10%;
+        }
+      }
+    }
+
+    @media (max-width: 767px) {
+      .carousel-item{
+        .wrapInfoMovie{
+          width: 60%;
+          .info{
+            margin-top: 5%;
+            
+            .titleFilm{
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              width: 96%;
+              font-size: 20px;
+            }
+            .btn-success{
+              font-size: 12px;
+            }
+            .infoOverflow{
+              display: none;
+            }
+          }
+        }
+        .overlay{
+          height: 5%;
+        }
+        
+      }
+    }
+    .carousel-control-next,
+    .carousel-control-prev {
+        width: 8%;
+        opacity: 0;
+        transition: opacity 1s ease;
+       span{
+        display: none;
+       }
     }
     
-    .textRating {
-        font-size: 90%;
-        color: white;
-        font-weight: bold;
-    }
-    
-    .circleBackground {
-        fill: #010101;
-        stroke: #c3bcbc;
-    }
-    
-    .progressBar {
-        fill: none;
-        stroke: rgb(73, 187, 23);
-        stroke-linecap: round;
-        stroke-linejoin: round;
+    .carousel-control-next:hover,
+    .carousel-control-prev:hover {
+       background-color: black;
+       opacity: 1;
+       span{
+        display: block;
+       }
     }
 }
 
+.containerTopNewestFilm.light{
+  .overlay{
+    background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) 0%,
+            $light-color-bg 125%
+        );
+  }
+}
+
+.containerTopNewestFilm.dark{
+  .overlay{
+    background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) 0%,
+            $dark-color-bg 105%
+        );
+  }
+}

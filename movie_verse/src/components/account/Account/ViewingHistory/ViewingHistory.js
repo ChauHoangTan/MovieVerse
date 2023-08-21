@@ -3,40 +3,72 @@ import './ViewingHistory.scss'
 import axios from 'axios';
 import LoadingEffect from '../../../LoadingEffect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesDown, faEdit } from '@fortawesome/free-solid-svg-icons';
-function ViewingHistory() {
-
-    const APIkey = 'a50a061b1989216e2c7931d35fc20896';
+import { faAnglesDown, faEdit, faPlay } from '@fortawesome/free-solid-svg-icons';
+import Rating from '../../../Rating';
+function ViewingHistory({title}) {
     const [dataHistory, setDataHistory] = useState([]);
     const [dataShow, setDataShow] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await handleGetHistoryFormAPI()
-            setDataHistory(data)
-            setIsLoaded(true)            
+            let objData = await handleGetHistoryFormAPI()
+            setDataHistory(objData.data)
+            setDataShow(objData.dataShow)
+            setIsLoaded(true)        
         }
-
         fetchData()
-        
-    } ,[])
+        handleDataShow()
+    } ,[title])
+
 
     const handleGetHistoryFormAPI = async() => {
         try{
-            const reponse = await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}&language=en-US&page=${1}`)
-            const result = reponse.data.results
-            console.log(result)
-            return result
+            let request = ''
+            if(title === 'Ratings'){
+                request = 'rating'
+            }else if(title === 'Liked Movies'){
+                request = 'favorite'
+            }else if(title === 'Bookmarks'){
+                request = 'bookmark'
+            }else if(title === 'Comments'){
+                request = 'comment'
+            }else if(title === 'Playlist'){
+                request = 'play_list'
+            }else if(title === 'Viewing History'){
+                request = 'history'
+            }
+            const reponse = await axios.post(`http://localhost:4000/account`,
+            {
+                token: sessionStorage.getItem('token'),
+                field: request
+            })
+            const result = reponse.data
+
+            let dataShow = []
+            if(result.length <= 10 ){
+                dataShow = result
+            }else{
+                for(let i = 0; i < 10; i++){
+                    dataShow.push(result[i])
+                }
+            }
+            console.log(reponse)
+            return {
+                data: result,
+                dataShow: dataShow
+            }
         }catch(error){
             console.log(error)
         }
     }
 
-    useEffect(() => {
-        handleDataShow()
-    }, [isLoaded])
+    // useEffect(() => {
+    //     handleDataShow()
+        
+    // }, [isLoaded, title])
     const handleDataShow = () => {
+        console.log(dataShow)
         if(isLoaded){
             let length = dataShow.length + 10
             if(length > dataHistory.length){
@@ -56,12 +88,22 @@ function ViewingHistory() {
             
             {isLoaded ? 
                 (<div className='viewingHistory'>
-                    <div className='mx-3 my-3 fw-bold fs-5'>Viewing History <FontAwesomeIcon className='float-end text-light' icon={faEdit} /></div>
+                    <div className='mx-3 my-3 fw-bold fs-5'>{title} <FontAwesomeIcon className='float-end text-light' icon={faEdit} /></div>
                     <div className='content'>
                         {dataShow.map((movie,index) => {
                             return(
                                 <div>
                                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}/>
+                                    <span className='text-light titleFilm'>{movie.title}</span>
+                                    <span className='hoverFilm'>
+                                        <span className='rating'>
+                                            <Rating percent={movie.vote_average} width={45}/>
+                                            <span className='text-light fs-6 mx-2'>{(movie.release_date).slice(0,4)}</span>
+                                        </span>
+                                        <FontAwesomeIcon icon={faPlay} className='btnPlay'/>
+                                    </span>
+                                    
+                                    
                                 </div>
                             )
                         })}

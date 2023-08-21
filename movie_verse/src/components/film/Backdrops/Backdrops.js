@@ -3,9 +3,9 @@ import Carousel from 'react-grid-carousel';
 import './Backdrops.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function Backdrops({title,images,cols}) {
+function Backdrops({title,images,cols,theme}) {
     return ( 
-        <div className='wrapperBackdrops'>
+        <div className={`wrapperBackdrops ${theme}`}>
 
             <div className='contentBackdrops'>
                 <div className='titleName fw-bold'>{title}</div>

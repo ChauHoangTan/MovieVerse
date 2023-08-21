@@ -1,18 +1,42 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import './Reviews.scss'
 import SingleReview from './SingleReview';
 import WriteReview from './WriteReview';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export const ViewReviewsContext = createContext()
-function ViewReviews( {title }) {
+function ViewReviews( {title, theme }) {
 
     const [listReview, setListReview] = useState([])
+    // id phim
+    const {type,id} = useParams();
+
+    // format = {
+    //     name: "Châu Hoàng Tấn",
+    //     date: getCurrentDate(),
+    //     overview: input
+    // }
+
+    // lấy danh sách review của phim
+    useEffect(()=>{
+        const fetchConnect = async () => {
+            try{
+                const response = await axios.get(`http://localhost:4000/${type}/${id}/reviews`)
+                setListReview(response.data)
+                console.log(response)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        fetchConnect()
+    },[])
     return ( 
         <ViewReviewsContext.Provider value={{listReview,setListReview}}>
-            <div className='wrapperField'>
+            <div className={`wrapperField ${theme}`}>
                 <div className='contentReviews fw-bold'>
                     <div className='titleName'>
-                        {title} (3)
+                        {title} ({listReview.length})
                     </div>
 
                     <div className='ms-5'>

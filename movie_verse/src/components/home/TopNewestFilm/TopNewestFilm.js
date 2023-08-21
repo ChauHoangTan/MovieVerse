@@ -9,80 +9,100 @@ import Category from './Category';
 import Rating from '../../Rating';
 
 import "@fontsource/inter"; // Defaults to weight 400
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-class Film {
-    constructor(image, name, subName, description, rate, categories) {
-        this.image = image;
-        this.name = name;
-        this.subName = subName;
-        this.description = description;
-        this.rate = rate;
-        this.categories = categories;
+
+
+
+
+function TopNewestFilm({list, genres}) {
+
+    const theme = useSelector(state => state.theme.theme);
+
+    const navigate = useNavigate()
+
+    const findGenreName = (id) => {
+        
+        for(let i = 0; i < genres.length; i++){
+            if(id === genres[i].id){
+                return genres[i].name
+            }
+        }
     }
-}
 
-var cate1 = ["Action", "Mystery", "Fiction", "Drama"]
-var cate2 = ["Action", "Cartoons", "Fiction", "Fantasy", "Comedy"]
-var cate3 = ["Action", "Adventure", "Fiction"]
+    const navigateToFilmDetails = (id) => {
+        navigate(`/movie/${id}`)
+    }
 
-var Film1 = new Film('https://toigingiuvedep.vn/wp-content/uploads/2022/12/hinh-anh-wednesday-lam-hinh-nen-may-tinh.jpg', 'WEDNESDAY', 'Wednesday Addams (2022)', 'Clever, stingy, and a little slow at heart, Wednesday Addams investigates a serial murder case as it gains new friends and foes alike at Nevermore Academy', 7.5, cate1);
-var Film2 = new Film('https://ecdn.game4v.com/g4v-content/uploads/2021/09/26155431/game4v-kimetsu-no-yaiba-ss2-3-1632646470-68.jpeg', "KIMETSU NO YAIBA", 'The Movie: Mugen Train', 'After finishing the study at the Butterfly Estate, Tanjiro reached the next place “Mugen Train” for task with friends. In a short time, over 40 people disappeared there and the Demon Slayers sent there all lost contact. Tanjiro, Zenitsu, Inosuke and Nezuko joined Rengoku Kyojuro, who is one of the “Pillars” of the Demon Slayers. They’re going to face the Demons hiding in the Mugen Train to the darkness.', 8.5, cate2);
-var Film3 = new Film('https://img5.thuthuatphanmem.vn/uploads/2021/12/06/anh-nen-nguoi-nhen-4k-dep_090219416.jpg', "SPIDERMAN", 'The Movie: No Way Home', 'With Spider-Mans identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.', 8.5, cate3);
 
-const ListFilmNewest = [Film1, Film2, Film3]
-
-const show = ListFilmNewest.map((film) =>
-    <Carousel.Item>
-        <div className="backgroundContainer" style={{ backgroundImage: 'url(' + film.image + ')' }}>
-            <div className="content">
-                <div style={{ height: '70%' }}>
-                    <div style={{ fontWeight: '900', fontSize: '50px' }}>
-                        {film.name}
-                    </div>
-                    <div style={{ fontWeight: '500', fontSize: '30px', marginTop: '-2%' }}>
-                        {film.subName}
-                    </div>
-                    <div style={{ fontWeight: '300', fontSize: '17px', marginTop: '5%', marginRight: '10%', opacity: '0.75', marginBottom: "4%" }}>
-                        {film.description}
-                    </div>
-                    <div className='d-flex' style={{ paddingRight: '10%' }}>
-                        <div className='rating'>
-                            <Rating percent={film.rate} width={50} />
-                        </div>
-                        <div className='rating'>
-                            <Category listCate={film.categories} />
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <span>
-                        <Button variant="warning" className='py-1 px-3' style={{ fontWeight: '600', fontSize: '18px', marginRight: '3%' }}>
-                            <FontAwesomeIcon icon={faPlay} className='fs-5' style={{ marginRight: '5px' }} />
-                            <span>
-                                PLAY
-                            </span>
-                        </Button>
-                    </span>
-                    <span>
-                        <Button variant="secondary" className='py-1 px-3' style={{ fontWeight: '600', fontSize: '18px' }}>
-                            <FontAwesomeIcon icon={faCircleInfo} className='fs-5' style={{ marginRight: '5px' }} />
-                            <span>
-                                MORE INFO
-                            </span>
-                        </Button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </Carousel.Item >
-);
-
-function TopNewestFilm() {
+    console.log(list, genres)
     return (
-        <div className='containerTopNewestFilm' style={{ height: '100%' }}>
-            <Carousel auto>
-                {show}
-            </Carousel>
+        // <div className='containerTopNewestFilm' style={{ height: '100%' }}>
+        //     <Carousel auto>
+        //         {show}
+        //     </Carousel>
+        // </div>
+        <div className={`containerTopNewestFilm ${theme}`}>
+            <div id="carouselExampleCaptions" className="carousel slide">
+                
+                <div className="carousel-inner">
+                    {list.map((movie, index) => {
+                        return (
+                            <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                                <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
+                                <div className='wrapInfoMovie'> 
+                                    <div className='info'>
+                                        <div>
+                                            <span className='fw-bold titleFilm d-inline-block'>{movie.original_title} {movie.release_date.slice(0,4)}</span>
+                                        </div>
+
+                                        <div className='infoOverflow'>
+                                            <div className='mt-1'>
+
+                                                {movie.genre_ids.map((genre) => {
+                                                    let genreName = findGenreName(genre)
+
+                                                    return (
+                                                        <span className='bg-danger rounded-3 me-2 mt-2 px-2 py-1 d-inline-block'> {genreName} </span>
+                                                    )
+                                                })}
+                                            </div>  
+                                            <div className='mt-3 overview'>
+                                                <span className='opacity-75'>{movie.overview}</span>
+
+                                            </div>
+                                        </div>    
+                                        
+                                          
+                                        
+                                        <div className='mt-3'> 
+                                            <Rating percent={movie.vote_average} width={55} />
+                                            <span className='btn btn-success ms-2' onClick={()=>navigateToFilmDetails(movie.id)}>
+                                                <FontAwesomeIcon icon={faPlay} />
+                                                <span className='ms-2 viewDetails'>View Details</span>
+                                            </span>   
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div className='overlay'> </div>
+                            </div>
+                        )
+                    })}
+                    
+                    
+                </div>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
+                </div>
         </div>
     );
 }

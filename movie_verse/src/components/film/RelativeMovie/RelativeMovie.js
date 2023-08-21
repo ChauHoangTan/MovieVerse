@@ -3,7 +3,7 @@ import Carousel from 'react-grid-carousel'
 import './RelativeMovie.scss'
 import { useState } from 'react';
 
-function RelativeMovie({title, similars}) {
+function RelativeMovie({title, similars, theme}) {
 
     const [isHoverActor, setIsHoverActor] = useState(-1)
 
@@ -16,7 +16,7 @@ function RelativeMovie({title, similars}) {
     }
 
     return ( 
-        <div className='wrapperField relativeMovie'>
+        <div className={`wrapperField relativeMovie ${theme}`}>
             <div className='content'>
                 <div className='titleName'>
                     {title}

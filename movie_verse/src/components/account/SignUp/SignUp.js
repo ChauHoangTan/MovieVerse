@@ -3,14 +3,23 @@ import './SignUp.scss'
 import { faCircleUser,faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios'
+import { useSelector } from 'react-redux';
 function SignUp() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rewritePassword, setRewritePassword] = useState('')
+    const [notiErr, setNotiErr] = useState('')
+
+    const theme = useSelector(state => state.theme.theme);
+
     const handleInputUsername = (e) => {
         setUsername(e.target.value)
+        // xóa notiErr mỗi khi đổi tên tài khoản
+        if(notiErr !== ''){
+            setNotiErr('')
+        }
     }   
 
     const handleInputPassword = (e) => {
@@ -24,22 +33,43 @@ function SignUp() {
     const handleClickSignUp = (e) => {
         e.preventDefault()
         if(username !== '' && password !== '' && password === rewritePassword){
-            navigate('/login')
+            if(password === rewritePassword){
+                // gửi dữ liệu đến server để kiểm tra đăng ký hợp lệ không
+                try{
+                    const response = axios.post('http://localhost:4000/register', {username, password})
+
+                    // response được gửi từ server là một promise
+                    response.then((data)=>{
+                        console.log(data.data)
+                        if(data.data.status === true){
+                            navigate('/login')
+                        }else{
+                            setNotiErr(data.data.title)
+                        }
+                    })
+                    
+                }catch(err){
+                    console.log(err)
+                }
+            }
         }
         
     }
 
     console.log('render')
     return ( 
-        <div className='wrapperSignUp'>
+        <div className={`wrapperSignUp ${theme}`}>
             <div className='image'>
-                <img src="https://a-static.besthdwallpaper.com/nature-landscape-art-wallpaper-2048x1152-81119_49.jpg"/>
+                {theme === 'light' ? 
+                    <img src="https://anhdep123.com/wp-content/uploads/2021/08/Top-222-phong-canh-anime-dep-tuyet-voi-phai-xem-ngay-39.jpg"></img>:
+                    <img src="https://img4.thuthuatphanmem.vn/uploads/2020/05/13/anh-nen-4k-anime_062606240.jpg"/> 
+                }
             </div>
             <div className='form'>
                 <span className='greeting fw-bold'>Welcome To Visit My Website</span>
                 <form onSubmit={handleClickSignUp}>
 
-                    <div className='d-flex justify-content-center align-items-center fs-3'>Log In</div>
+                    <div className='d-flex justify-content-center align-items-center fs-3 signUp'>Sign Up</div>
                    
                     <div className='inputField my-4'>
                         <label htmlFor='username'>Username</label>
@@ -54,7 +84,7 @@ function SignUp() {
                                 onChange={handleInputUsername}/>
                             <FontAwesomeIcon className='icon text-dark' icon={faCircleUser}/>
                         </div>
-                        
+                        <span className={`fs-6 mx-2 text-danger text-decoration-underline fst-italic ${notiErr === '' ? 'd-none' : 'd-inline-block'}`}>{notiErr}</span>
                     </div>
                     
                     <div className='inputField mt-4'>

@@ -20,7 +20,7 @@ function RouteLayout() {
             <Routes>
                 <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
-                <Route path="film" element={<Film/>}/>
+                <Route path="/:type/:id" element={<Film/>}/>
                 <Route path="actor" element={<Actor/>}/>
                 <Route path='/actor/:id' element={<ActorDetails/>}/>
                 <Route path="category" element={<Category/>}/>

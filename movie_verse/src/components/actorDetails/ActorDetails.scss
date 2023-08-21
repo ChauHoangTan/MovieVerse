@@ -1,6 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Arima:wght@300;600&display=swap');
 
+$light-color-bg: #d6d6d6;
+$light-color-text: #000000;
+$dark-color-bg: #000000;
+$dark-color-text: #ffffff;
 
 // #header{
 //     position: fixed;
@@ -12,23 +16,18 @@
 // }
 .containerActorDetails{
     padding-top: 5%;
-    background-color: black;
     display: flex;
     justify-content: center;
 
     .wrapActorDetails{
-        width: 80%;
-        color: white;
+        
         font-family: Arima;
         .actorDetails{
-        
-            background-color: rgb(59, 62, 65);
             padding: 1%;
             margin-top: 2%;
-            display: grid;
-            grid-template-columns: 25% auto;
-
             
+            
+
             div>div{                
                 .avatar{
                     width: 95%;
@@ -46,10 +45,7 @@
                     }
                 }
             }
-            .parentAvatar{
-                margin-right: 5%;
-                height: fit-content;
-            }
+            
             
             .parentAvatar,.parentDetails{
                 box-shadow: 4px 4px 0px 0 rgba(0, 0, 0, 0.2);
@@ -68,11 +64,114 @@
     
 
     
+    @media (min-width: 1024px){
+        .wrapActorDetails{
+            width: 80%;
+            .actorDetails{
+                display: grid;
+                grid-template-columns: 25% auto;
+            }
+            .parentAvatar{
+                margin-right: 5%;
+                height: fit-content;
+            }
+        }
+    }
 
+    @media (min-width: 768px) and (max-width: 1023px){
+        .wrapActorDetails{
+            width: 80%;
+            .actorDetails{
+                .containerAvatar{
+                    
+                    .parentAvatar{
+                        width: 50%;      
+                        .avatar{
+                            width: 95%;
+                            margin: 2% 0;
+                            img{
+                                width: 100%;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+               
+            }
+            
+        }
+    }
+
+    @media (min-width: 428px) and (max-width: 767px){
+        .wrapActorDetails{
+            width: 95%;
+            grid-template-columns: auto;
+            .actorDetails{
+                .containerAvatar{
+                    .parentAvatar{
+                        width: 60%;      
+                        .avatar{
+                            width: 95%;
+                            margin: 2% 0;
+                            img{
+                                width: 100%;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    @media (max-width: 427px){
+        .wrapActorDetails{
+            width: 95%;
+            grid-template-columns: auto;
+            .actorDetails{
+                .containerAvatar{
+                    .parentAvatar{
+                        width: 90%;      
+                        .avatar{
+                            width: 95%;
+                            margin: 2% 0;
+                            img{
+                                width: 100%;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
  
 }
 
 
-#containerApp{
-    background-color: black;
+.containerActorDetails.light{
+    background-color: $light-color-bg;
+    .wrapActorDetails{
+        color: $light-color-text;
+        .actorDetails{
+            background-color: rgb(190, 203, 215);
+            .parentAvatar,.parentDetails{
+                background-color: rgb(134, 179, 216);
+            }
+        }
+    }
+}
+.containerActorDetails.dark{
+    background-color: $dark-color-bg;
+    .wrapActorDetails{
+        color: $dark-color-text;
+        .actorDetails{
+            background-color: rgb(59, 62, 65);
+            .parentAvatar,.parentDetails{
+                background-color: rgb(40, 41, 42);
+            }
+        }
+    }
 }

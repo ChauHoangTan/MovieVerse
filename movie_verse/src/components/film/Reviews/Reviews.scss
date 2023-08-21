@@ -1,27 +1,83 @@
+$dark-color-text: #f4eae8;
+$light-color-text: #416390;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(239, 240, 255);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
 
 
 .contentReviews{
-    color:aliceblue;
-    margin-left: 10%;
+    
     font-size: 25px;
-    padding-top: 2%
+    padding-top: 2%;
+    .writeReview{
+        width: 85%;
+    }
+
+    @media (min-width: 1024px){
+        margin-left: 8%;
+        width: 85%;
+        
+    }
+
+    @media (max-width: 1023px){
+        margin-left: 2%;
+        width: 95%;
+      
+    }
 }
+
 
 .inputReview{
     appearance: none;
     outline: none;
     border: none;
-    background-color: black;
     width: 100%;
     resize: none;
     overflow: hidden; 
 }
-
-.writeReview{
-    border:2px solid rgb(142, 133, 133);
+.wrapperField.light{
+    .contentReviews{
+        color: black;
+        .singleReview{
+            border: 2px solid rgb(168, 25, 25);
+        }
+    }
+    .inputReview{
+        background-color: $light-color-bg;
+    }
+    .writeReview{
+        border:2px solid rgb(187, 78, 78);
+    }
+    .writeReview.isFocus{
+        border-color: rgb(17, 109, 45);
+    }
+    .overview{
+        color: black;
+    }
 }
 
-.writeReview.isFocus{
-    border-color: rgb(15, 150, 55);
+.wrapperField.dark{
+    .contentReviews{
+        color: $dark-color-text;
+        .singleReview{
+            border: 2px solid rgb(89, 82, 82);
+        }
+    }
+    .inputReview{
+        background-color: $dark-color-bg;
+    }
+    .writeReview{
+        border:2px solid rgb(142, 133, 133);
+    }
+    .writeReview.isFocus{
+        border-color: rgb(15, 150, 55);
+    }
+    .overview{
+        color: rgb(95, 83, 83);
+    }
 }
+
+
+
 

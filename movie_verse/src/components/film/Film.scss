@@ -1,0 +1,17 @@
+$dark-color-text: #f4eae8;
+$light-color-text: #000000;
+$dark-color-bg: #000000;
+$light-color-bg: rgb(239, 240, 255);
+$dark-color-menu: #142634;
+$light-color-menu: rgb(156, 185, 200);
+
+
+.containerFilm.light{
+    background-color: $light-color-bg;
+    color: $light-color-text
+}
+
+.containerFilm.dark{
+    background-color: $dark-color-bg;
+    color: $dark-color-text
+}

@@ -6,6 +6,7 @@ import ActorInfo from './ActorInfo';
 import FilmCredits from './FilmCredits/FilmCredits';
 import RankedCredit from './RankedCredits/RankedCredits';
 import LoadingEffect from '../LoadingEffect';
+import { useSelector } from 'react-redux';
 
 function ActorDetails() {
     const {id} = useParams();
@@ -14,7 +15,7 @@ function ActorDetails() {
     const [isLoaded, setIsLoaded] = useState(false)
     const [actorDetails, setActorsDetails] = useState(null)
 
-    
+    const theme = useSelector(state => state.theme.theme)
     
     useEffect(()=>{
         const fetchData = async () =>{
@@ -50,17 +51,17 @@ function ActorDetails() {
 
         <>
             {isLoaded ? (
-                <div className='containerActorDetails'>
+                <div className={`containerActorDetails ${theme}`}>
 
                     <div className='wrapActorDetails'>
                         <div className='actorDetails'>
-                            <div className='d-flex align-items-center'>
-                                <div className='parentAvatar d-flex justify-content-center bg-dark rounded-2'>
+                            <div className='containerAvatar d-flex align-items-center justify-content-center'>
+                                <div className='parentAvatar d-flex justify-content-center rounded-2'>
                                     <div className='avatar'><img src={`https://image.tmdb.org/t/p/original${actorDetails.profile_path}`}/></div>
                                 </div>
                             </div>
                             
-                            <div className='parentDetails d-flex align-items-center bg-dark rounded-2'>
+                            <div className='parentDetails d-flex align-items-center rounded-2'>
                                 <div className=' d-flex justify-content-center'>
                                     <div className='details'>
                                         <ActorInfo Actor={actorDetails} />

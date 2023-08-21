@@ -5,7 +5,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import {ViewReviewsContext} from './ViewReviews'
 import getCurrentDate from './getDate';
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function WriteReview() {
 
@@ -17,6 +18,8 @@ function WriteReview() {
     const [isFocused, setIsFocused] = useState(false)
 
     const {listReview,setListReview} = useContext(ViewReviewsContext)
+
+    const {type, id} = useParams();
 
     // auto resize textarea
     const resizeTextArea = () => {
@@ -43,15 +46,25 @@ function WriteReview() {
         let newReview = {
             name: "Châu Hoàng Tấn",
             date: getCurrentDate(),
-            overview: input
+            overview: input,
+            type: type,
+            id: id
         }
         
         let currentState = [...listReview];
-        currentState.push({
-            newReview
-        })
-        setListReview(prevList => [...prevList, newReview])
+        currentState.unshift(newReview)
+        setListReview([...currentState])
         setInput("")
+
+        // thêm dữ liệu vào api
+        const fetchConnect = async () => {
+            try{
+                const response = await axios.post(`http://localhost:4000/film/${19995}/addReview`,{newReview})
+            }catch(err){
+                console.log(err)
+            }
+        }
+        fetchConnect()
     }
 
     const handleKeyDown = (e) => {
@@ -70,7 +83,7 @@ function WriteReview() {
                 </div>
             </div>
         
-            <div className={`writeReview fs-6 rounded-1 p-2 w-75 h-auto d-flex flex-wrap justify-content-end ${isFocused ? 'isFocus' : ''}`}>
+            <div className={`writeReview fs-6 rounded-1 p-2 h-auto d-flex flex-wrap justify-content-end ${isFocused ? 'isFocus' : ''}`}>
                 <textarea 
                     ref={textareaRef}
                     className= 'inputReview text-light flex-grow-1' 

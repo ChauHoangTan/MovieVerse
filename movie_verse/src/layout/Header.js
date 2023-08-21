@@ -13,7 +13,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
+import avatar from '../assets/images/avatar/avatar.png'
+import { useSelector } from 'react-redux';
 function Header() {
+
+    const stateAccount = useSelector(state=> state.stateAccount.stateAccount)
 
     return (
         <>
@@ -49,11 +53,14 @@ function Header() {
                                     <img src={search} alt="Search" style={{ width: "25px" }} />
                                 </Button>
                             </InputGroup>
+                            
                         </Nav>
                         <Nav>
-                            <Button variant="warning" style={{ fontWeight: "bold" }}>
+                            {sessionStorage.getItem('token') === null ? 
+                                (<Button variant="warning" style={{ fontWeight: "bold" }}>
                                 <Link to="/login" className='text-dark text-decoration-none'>Sign In</Link>
-                            </Button>
+                            </Button>) :
+                                <img src={avatar} style={{width: '50px', height:'50px', borderRadius: '50%'}}/>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

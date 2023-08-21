@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.scss'
 import { faCircleUser,faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoginLogout } from './redux/Login_LogoutAction';
 function LogIn() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [listAccount, setListAccount] = useState([])
     const [lock, setLock] = useState(true)
+
+    const theme = useSelector(state => state.theme.theme);
+
+    const dispatch = useDispatch();
+
     const handleInputUsername = (e) => {
         setUsername(e.target.value)
     }   
@@ -19,12 +27,36 @@ function LogIn() {
 
     const navigate = useNavigate()
 
+    const handlePostLogin = async () => {
+        try{
+            // kiểm tra thông tin đăng nhập từ server
+            const response = await axios.post('http://localhost:4000/login', {username, password})
+            // const token = response.data.token
+    
+            // nếu trả về một token, nghĩa là thông tin đăng nhập đúng
+            console.log(response)
+            if(response.data){
+                sessionStorage.setItem('token', response.data)
+
+                // set trạng thái tài khoản là true
+                dispatch(setLoginLogout(true))
+                // điều hướng đến home
+                navigate('/')
+                
+            }
+
+        }catch(err){
+            console.log(err)
+        }
+    }
     const handleClickLogIn = (e) => {
         e.preventDefault()
-        if(username !== '' && password !== ''){
-            navigate('/')
-        }
+        handlePostLogin()
+        // if(username !== '' && password !== ''){
+        //     navigate('/')
+        // }
         
+
     }
     const handleClickSignUp = () => {
         
@@ -42,15 +74,20 @@ function LogIn() {
 
     console.log('render')
     return ( 
-        <div className='wrapperLogIn'>
+        <div className={`wrapperLogIn ${theme}`}>
             <div className='image'>
-                <img src="https://a-static.besthdwallpaper.com/nature-landscape-art-wallpaper-2048x1152-81119_49.jpg"/>
+                {theme === 'light' ? 
+                    <img src="https://anhdep123.com/wp-content/uploads/2021/08/Top-222-phong-canh-anime-dep-tuyet-voi-phai-xem-ngay-39.jpg"></img>:
+                    <img src="https://img4.thuthuatphanmem.vn/uploads/2020/05/13/anh-nen-4k-anime_062606240.jpg"/> 
+                }
+                
+                
             </div>
             <div className='form'>
                 <span className='greeting fw-bold'>Welcome To Visit My Website</span>
-                <form onSubmit={handleClickLogIn}>
+                <form onSubmit={handleClickLogIn} method='POST'>
 
-                    <div className='d-flex justify-content-center align-items-center fs-3'>Log In</div>
+                    <div className='d-flex justify-content-center align-items-center login'>Log In</div>
                    
                     <div className='inputField my-4'>
                         <label htmlFor='username'>Username</label>
@@ -104,8 +141,8 @@ function LogIn() {
                         <div className='text-center fs-5 my-2'>Log In By </div>
                         <div className='anotherWayLogin d-flex justify-content-center align-items-center'>
                             <div>
-                                <img className='mx-2' style={{width:'40px', height:'40px'}} src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/480px-Facebook_Logo_%282019%29.png'/>
-                                <img className='mx-2' style={{width:'40px', height:'40px'}} src='https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png'/>
+                                <img className='mx-2' style={{width:'40px', height:'40px'}} alt='FaceBook' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/480px-Facebook_Logo_%282019%29.png'/>
+                                <img className='mx-2' style={{width:'40px', height:'40px'}} alt='Google' src='https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png'/>
                             </div>
                             
                         </div>

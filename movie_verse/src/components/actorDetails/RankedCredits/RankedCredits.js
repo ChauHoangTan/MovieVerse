@@ -87,24 +87,15 @@ function RankedCredit({Title,ListCredit}) {
                     {Title}
                 </div>
 
-                <div className="container w-100 text-center my-3">
-                    <div className="row mx-auto my-auto justify-content-center">
+                <div className="w-100 text-center my-3">
+                    <div className="row justify-content-center">
                         <div id="recipeCarousel" className="carousel slide" data-bs-ride="carousel">
                             <div className="carousel-inner" role="listbox">
                                 <div className='showMedia'>
                                     {arrRanked.map((item,index) => {
-                                        // if(index === 9){
-                                        //     if(count.current === 0){
-                                        //         count.current++
-                                        //         setIsRendered(true)
-                                        //         console.log("hello")
-                                        //     }
-                                        // }
+                                       
                                         return (
-                                        // <div className='containerMedia'>
-                                        //     <span className={`numberOfRank d-flex align-items-start rank-${index+1}`}>{index + 1}</span>
-                                        //     <img src={`https://image.tmdb.org/t/p/original${item.poster_path}`}/>
-                                        // </div>
+
                                         <div className={`carousel-item ${index === 0 ? "active" : ""}`}>
                                             <div className="col-md-3">
                                                 <div className='containerMedia'>

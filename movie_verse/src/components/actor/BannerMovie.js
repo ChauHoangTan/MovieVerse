@@ -131,17 +131,17 @@ function ActorsList() {
 
                                                                 <div className='movieDetails'>
                                                                     <div>
-                                                                        <div className='fs-1'>{movie.media_type ==="movie" ? movie.title : movie.name}</div>
-                                                                        <div>
+                                                                        <div className='titleMovie'>{movie.media_type ==="movie" ? movie.title : movie.name}</div>
+                                                                        <div className='genres'>
                                                                             {/* {findNameGenreById(1)} */}
                                                                             {movie.genre_ids.map((category) => {
                                                                                 return <div className='btn btn-danger me-2 border border-danger rounded-5'>{findNameGenreById(category,movie.media_type)}</div>
                                                                             })}
                                                                         </div>
-                                                                        <div className='my-3'>{movie.overview}</div>
-                                                                        <div className='my-3'>
+                                                                        <div className='my-3 overview'>{movie.overview}</div>
+                                                                        <div className='my-3 '>
                                                                             <Rating percent={movie.vote_average} width={45}/> 
-                                                                            <button className='mx-3 btn btn-danger text-light border border-3 border-danger'>
+                                                                            <button className='mx-3 btn btn-danger text-light border border-3 border-danger play'>
                                                                                 <FontAwesomeIcon className='me-2' icon={faPlay}/>Watch now</button>
                                                                         </div>
                                                                     </div>
