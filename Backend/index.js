@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const port = 4000;
 
-const bodyParser = require('body-parser')
+
+const bodyParser = require('body-parser');
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -21,6 +23,11 @@ app.use(express.json());
 // Sử dụng body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })); // Xử lý dữ liệu form-urlencoded
+
+
+
+// Cung cấp quyền truy cập thư mục lưu trữ ảnh uploads
+app.use('/update/image', express.static('./public/uploads/'))
 
 // Route sử lý
 

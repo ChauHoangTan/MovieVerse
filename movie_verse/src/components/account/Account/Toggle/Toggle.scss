@@ -1,4 +1,6 @@
-
+#ToggleTheme{
+    height: 1.5rem;
+}
 
 .wrapperToggle{
     width: 3.5rem;
@@ -7,7 +9,7 @@
     border-radius: 50px;
     position: relative;
     transition: 0.3s ease;
-    margin: 0;
+
 
     .stateToggle{
         position: absolute;

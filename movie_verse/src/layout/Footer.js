@@ -20,12 +20,7 @@ function Footer() {
                             Đại học Khoa Học Tự Nhiên - ĐHQG TPHCM
                         </div>
                     </Row>
-                    <Row>
-                        <div className="compo-footer" >
-                            <img src={student} alt="student" style={{ width: "14px", marginRight: "5px" }} />
-                            20127403 - Phạm Trần Minh Ngọc
-                        </div>
-                    </Row>
+                    
                     <Row>
                         <div className="compo-footer">
                             <img src={student} alt="student" style={{ width: "14px", marginRight: "5px" }} />

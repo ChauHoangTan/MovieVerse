@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Account.scss'
-import avatar from './avatar.png'
+import defaultAvatar from './avatar.png'
 import { faEdit, faCamera, faCircleInfo, faHistory, faStar, faHeart, faBookmark, faComment, faList, faGear,faArrowRightFromBracket, faK, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Toggle from './Toggle/Toggle.js'
@@ -10,8 +10,42 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setThemeMode } from '../../themeModeRedux/themeModeAction';
 import { setLoginLogout } from '../LogIn/redux/Login_LogoutAction';
+import axios from 'axios';
+import { useEffect } from 'react';
+
 
 function Account() {
+
+    const [background, setBackground] = useState()
+    const [avatar, setAvatar] = useState()
+
+    const [fullName, setFullName] = useState('')
+    const token = sessionStorage.getItem('token')
+    const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+    const getInfoFromAPI = async() => {
+        const response = await axios.get('http://localhost:4000/account/info', {headers})
+        const result = response.data
+        if(result.fullName !== undefined){
+            setFullName(result.fullName)
+        }
+
+        if(result.background !== undefined){
+            setBackground(`http://localhost:4000/update/image/${result.background}`)
+        }
+
+        if(result.avatar !== undefined){
+            setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+        }
+
+    }
+
+    useEffect(() => {
+        getInfoFromAPI()
+
+    },[])
 
     // để gọi action cho theme mode
     const dispatch = useDispatch();
@@ -69,30 +103,103 @@ function Account() {
         }
     }
 
+
     const handleSetThemeMode = () => {
         dispatch(setThemeMode())
     }
 
-    const chooseFile = () => {
-        document.querySelector('#chooseFile').click();
+    const chooseFileBackground = () => {
+        document.querySelector('#chooseFileBackground').click();
     }
+
+    const chooseFileAvatar =() => {
+        document.querySelector('#chooseFileAvatar').click();
+    }
+
+    const handleChooseFile = async (e, taskName) => {
+        // lấy file được chọn
+        const file = e.target.files[0]
+        // tạo url tạm thời cho file ảnh
+        file.image = URL.createObjectURL(file)
+
+        // hàm sử dụng chung cho background và avatar
+        // nếu như chọn file cho background
+        if(taskName === 'background'){
+            // set url cho background
+            setBackground(file.image)
+
+            // gửi file sang cho server lưu trữ
+            const formData = new FormData();
+            formData.append('background',file)
+            formData.append('type','background')
+            formData.append('token', sessionStorage.getItem('token'))
+            await axios.post('http://localhost:4000/account/update/image',formData, {
+                // gửi formData với content-type là multipart/form-data để xử lý
+                // multer bên express js
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }})
+
+        }
+        // nếu chọn file cho avatar
+        else{
+            // set url cho avatar
+            setAvatar(file.image)
+
+            // gửi file ảnh avatar sang server lưu trữ
+            const formData = new FormData();
+            formData.append('avatar',file)
+            formData.append('type','avatar')
+            formData.append('token', sessionStorage.getItem('token'))
+            await axios.post('http://localhost:4000/account/update/image',formData, {
+                // gửi formData với content-type là multipart/form-data để xử lý
+                // multer bên express js
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                }})
+
+        }
+        
+    }
+
+    useEffect(()=>{
+        return () =>{
+            {background && (URL.revokeObjectURL(background.image))}
+            {avatar && (URL.revokeObjectURL(avatar.image))}
+        }
+    },[background])
+
+    let backgroundStyle = 'url(https://www.pixel4k.com/wp-content/uploads/2020/01/alien-moon-nature_1580055622.jpg)';
+    if(background !== undefined){
+        backgroundStyle = `url(${background})`
+    }
+
     return (
         <div className={`wrapperAccount ${theme}`}>
-            <div className='headInfo'>
+    
+            <div className='headInfo' style={{backgroundImage: backgroundStyle}}>
                 <div className='changeBackground'>
                     <FontAwesomeIcon icon={faCamera} />
-                    <span className='mx-2 highlight' onClick={chooseFile}>Change background</span>
+                    <span className='mx-2 highlight' onClick={chooseFileBackground}>Change background</span>
                     <div style={{display: 'none'}}>
-                        <input id='chooseFile' type='file' accept="image/*"/>
+                        <input id='chooseFileBackground' type='file' accept="image/*" onChange={(e)=>handleChooseFile(e,'background')}/>
                     </div>
                 </div>
                 <div className='wrapAvatar'>
-                    <img className="avatar" src={avatar} />
-                    <FontAwesomeIcon icon={faEdit} className='icon' onClick={chooseFile} style={{cursor:'pointer'}}/>
-                    <span className='d-inline-block px-3 fw-bold highlight'>Châu Hoàng Tấn</span>
+                    <div style={{display: 'none'}}>
+                        <input id='chooseFileAvatar' type='file' accept="image/*" onChange={(e)=>handleChooseFile(e,'avatar')}/>
+                    </div>
+                    {avatar === undefined ? 
+                        (<img className="avatar" src={defaultAvatar} />) 
+                        : 
+                        (<img className="avatar" src={avatar} />)}
+                    <FontAwesomeIcon icon={faEdit} className='icon' onClick={chooseFileAvatar} />
+                    <span className='d-inline-block px-3 fw-bold highlight'>{fullName}</span>
                 </div>
                 
             </div>
+                
+            
             <div className='containerAccount'>
                 <div className='field'>
                     <div onClick={()=>setCurrentField(0)} className={`${field === 0 ? "text-danger" : ''}`}><span>Infomation</span> <FontAwesomeIcon className='icon' icon={faCircleInfo}/></div>

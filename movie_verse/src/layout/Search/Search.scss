@@ -1,0 +1,73 @@
+.wrapperSearchList{
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.81);
+    border-radius: 10px 10px 0px 0px;
+    .containerSearchList{
+
+        height: 60vh;
+        overflow: scroll;
+        .wrapItem{
+            margin: 15px;
+            display: grid;
+            grid-template-columns: 40% auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            .avatar{
+                position: relative;
+                img{
+                    width: 100%;
+                }
+                .rate{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transform: translate(-20%, -20%);
+                    
+                }
+            }
+            
+            .info{
+                margin-left: 10px;
+                color: #c4bfbf;
+                font-size: 14px;
+                span:nth-child(1){
+                    color: white;
+                    font-size: 16px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 95%;
+                }
+                span{
+                    display: block;
+                }
+                span:nth-child(2){
+                    margin-top: 6px;
+                }
+                span:nth-child(3){
+                    max-height: calc(14px*3);
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2; /* Số dòng tối đa */
+                    -webkit-box-orient: vertical;
+                }
+            }
+        }
+        
+        .wrapItem:hover{
+            transform: scale(1.05);
+        }
+    }
+    .moreResults{
+        display: flex;
+        justify-content: center;
+        margin: 5px;
+        color: rgb(215, 203, 203);
+        text-decoration: underline 1px solid rgb(215, 203, 203);
+        cursor: pointer;
+    }
+
+}

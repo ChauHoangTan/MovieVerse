@@ -90,21 +90,39 @@ function ViewingHistory({title}) {
                 (<div className='viewingHistory'>
                     <div className='mx-3 my-3 fw-bold fs-5'>{title} <FontAwesomeIcon className='float-end text-light' icon={faEdit} /></div>
                     <div className='content'>
-                        {dataShow.map((movie,index) => {
+                        {dataShow.map((film,index) => {
                             return(
                                 <div>
-                                    <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}/>
-                                    <span className='text-light titleFilm'>{movie.title}</span>
-                                    <span className='hoverFilm'>
-                                        <span className='rating'>
-                                            <Rating percent={movie.vote_average} width={45}/>
-                                            <span className='text-light fs-6 mx-2'>{(movie.release_date).slice(0,4)}</span>
-                                        </span>
-                                        <FontAwesomeIcon icon={faPlay} className='btnPlay'/>
-                                    </span>
+                                    {film.type === 'movie' ? (
+                                        <div>
+                                            <span className='rating'>
+                                                    <Rating percent={film.vote_average} width={45}/>
+                                                </span>
+                                            <img src={`https://image.tmdb.org/t/p/original${film.poster_path}`}/>
+                                            <span className='text-light titleFilm'>{film.title}</span>
+                                            <span className='hoverFilm'>
+                                                <FontAwesomeIcon icon={faPlay} className='btnPlay'/>
+                                            </span>
+
+                                        </div>
+                                        ) : (
+                                        <div>
+                                            <span className='rating'>
+                                                    <Rating percent={film.vote_average} width={45}/>
+                                                </span>
+                                            <img src={`https://image.tmdb.org/t/p/original${film.poster_path}`}/>
+                                            <span className='text-light titleFilm'>{film.name}</span>
+                                            <span className='hoverFilm'>
+                                                <FontAwesomeIcon icon={faPlay} className='btnPlay'/>
+                                            </span>
+
+                                        </div>
+                                        )
+                                    }
                                     
                                     
-                                </div>
+                                </div>    
+                 
                             )
                         })}
 

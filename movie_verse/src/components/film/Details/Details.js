@@ -8,6 +8,7 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
 
 import ListReaction from './ListReaction';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Details({details, theme}) {
 
@@ -46,6 +47,8 @@ function Details({details, theme}) {
             })
             
     },[])
+
+    const navigate = useNavigate()
 
     return ( 
         <div className={`wrapper ${theme}`}>
@@ -119,7 +122,7 @@ function Details({details, theme}) {
                             {details.cast.map((actor, index) => {
                                 return(
                                 <div className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                                    <div >
+                                    <div onClick={()=>{navigate(`/actor/${actor.id}`)}}>
                                         <div className='containerInfo'>
                                             <img src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} alt="..."/>
                                             <span className='actorName'>{actor.name}</span>

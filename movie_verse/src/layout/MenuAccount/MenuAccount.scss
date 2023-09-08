@@ -1,0 +1,47 @@
+$light-bg-color: white;
+$dark-bg-color: rgb(51, 58, 59);
+$light-text-color: black;
+$dark-text-color: rgb(255, 255, 255);
+
+.menuAccount{
+    
+    position: absolute;
+    right: 10px;
+    top: 55px;
+    border-radius: 5px;
+
+    span{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        margin: 5px 0px 5px 5px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        .icon{
+            margin: 0px 5px;
+        }
+    }
+    span:hover{
+        color: rgb(236, 165, 0);
+    }
+}
+
+.menuAccount.show{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.menuAccount.hidden{
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.menuAccount.light{
+    background-color: $light-bg-color;
+    color: $light-text-color
+}
+
+.menuAccount.dark{
+    background-color: $dark-bg-color;
+    color: $dark-text-color
+}

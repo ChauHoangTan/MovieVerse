@@ -52,15 +52,15 @@
                     outline: none;
                 }
 
-                #firstName:focus ~ .lblFirstName,
-                #firstName.notEmpty ~ .lblFirstName
+                #fullName:focus ~ .lblFullName,
+                #fullName.notEmpty ~ .lblFullName
                 {
                     top: -20px;
                     opacity: 100%;
                 }
 
-                #lastName:focus ~ .lblLastName,
-                #lastName.notEmpty ~ .lblLastName
+                #career:focus ~ .lblCareer,
+                #career.notEmpty ~ .lblCareer
                 {
                     top: -20px;
                     opacity: 100%;
@@ -169,7 +169,9 @@
         .infomation{
             div{
                 input{
-                    border: 2px solid rgb(3, 82, 42);
+                    border: 2px solid rgb(3, 82, 42);   
+                    color: black;
+
                 }
                 input:focus{
                     box-shadow: 0px 0px 2px green;
@@ -185,6 +187,7 @@
             div{
                 input{
                     border: 2px solid rgb(203, 124, 13);
+                    color : white;
                 }
                 input:focus{
                     box-shadow: 0px 0px 2px rgb(232, 197, 126);

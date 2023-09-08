@@ -25,11 +25,11 @@ function ShowListFilm({title,list,name,type}) {
                         }
                         let cloneChild = next.cloneNode(true)
                         const idFilm = cloneChild.children[0].getAttribute('data-film-id')
-                        console.log(idFilm)
+                        
                         cloneChild.children[0].addEventListener('click', () => {
                             navigateToFilmDetails(idFilm)
                         }); 
-                        console.log(cloneChild)
+                       
                         el.appendChild(cloneChild.children[0])
                         next = next.nextElementSibling
                         
@@ -42,7 +42,7 @@ function ShowListFilm({title,list,name,type}) {
 
     const navigate = useNavigate();
     const navigateToFilmDetails = (id) => {
-        console.log(id)
+        
         navigate(`${type}/${id}`)
     } 
 

@@ -23,10 +23,10 @@ const verifyToken = (token) => {
 
     return jwt.verify(token,process.env.SECRET_KEY,(err, decodeToken) =>{
         if(err){
-            console.log('Token không hợp lệ')
+            // console.log('Token không hợp lệ')
             return null
         }else{
-            console.log('Token hợp lẹ')
+            // console.log('Token hợp lẹ')
             return decodeToken
         }
     } )

@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-grid-carousel'
 import './RelativeMovie.scss'
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function RelativeMovie({title, similars, theme}) {
 
@@ -13,6 +14,14 @@ function RelativeMovie({title, similars, theme}) {
 
     const handleMouseLeaveInActor = () => {
         setIsHoverActor(-1)
+    }
+
+    const {type} = useParams()
+
+    const moveToAnotherFilm = (id) => {
+    
+        window.location.href = (`/${type}/${id}`)
+
     }
 
     return ( 
@@ -28,7 +37,8 @@ function RelativeMovie({title, similars, theme}) {
                             if(film.poster_path !== null){
                                 return (
                                     <Carousel.Item key={index}>
-                                        <div className={`wrapRelativeMovie ${isHoverActor === index ? "relavetiveMovieHover" : ""}`}>
+                                        <div className={`wrapRelativeMovie ${isHoverActor === index ? "relavetiveMovieHover" : ""}`}
+                                            onClick={()=>moveToAnotherFilm(film.id)}>
                                             <img className='' src={`https://image.tmdb.org/t/p/original${film.poster_path}`}/>
                                         </div>
                                         

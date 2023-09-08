@@ -36,7 +36,7 @@ function TopNewestFilm({list, genres}) {
     }
 
 
-    console.log(list, genres)
+
     return (
         // <div className='containerTopNewestFilm' style={{ height: '100%' }}>
         //     <Carousel auto>

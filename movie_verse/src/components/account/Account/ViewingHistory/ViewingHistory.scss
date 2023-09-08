@@ -7,11 +7,18 @@
         grid-template-columns: 20% 20% 20% 20% 20%;
 
         div{
+            
             position: relative;
             margin: 1%;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
+            .rating{
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
             img{
                 border-radius: 10px;
                 width: 100%;
@@ -36,12 +43,6 @@
             .hoverFilm{
                 opacity: 0;
                 transition: opacity 0.3s ease;
-                .rating{
-                    position: absolute;
-                    bottom: 10%;
-                    left: 2%;
-                   
-                }
                 
                 .btnPlay{
                     position: absolute;

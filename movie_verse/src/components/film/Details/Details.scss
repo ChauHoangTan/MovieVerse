@@ -1,7 +1,7 @@
 $dark-color-text: #D48872;
 $light-color-text: #416390;
 $dark-color-bg: #000000;
-$light-color-bg: rgb(239, 240, 255);
+$light-color-bg: rgb(227, 229, 231);
 $dark-color-menu: #142634;
 $light-color-menu: rgb(156, 185, 200);
 
@@ -9,7 +9,7 @@ $light-color-menu: rgb(156, 185, 200);
     width: 100%;
     min-height: 100vh;
     position: relative;
-
+    display: flex;
 
     .containerBackground{
       position: absolute;

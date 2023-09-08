@@ -7,6 +7,7 @@ import {ViewReviewsContext} from './ViewReviews'
 import getCurrentDate from './getDate';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import defaultAvatar from '../../account/Account/avatar.png'
 
 function WriteReview() {
 
@@ -41,30 +42,70 @@ function WriteReview() {
         setIsFocused(false)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        let newReview = {
-            name: "Châu Hoàng Tấn",
-            date: getCurrentDate(),
-            overview: input,
-            type: type,
-            id: id
+    /////////////////lấy tên người dùng///////
+    const [fullName, setFullName] = useState('')
+    const [avatar, setAvatar] = useState()
+    const token = sessionStorage.getItem('token')
+    const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+    
+
+    useEffect(() => {
+        const getInfoFromAPI = async() => {
+            const response = await axios.get('http://localhost:4000/account/info', {headers})
+            const result = response.data
+            if(result.fullName !== undefined){
+                setFullName(result.fullName)
+            }
+            if(result.avatar !== undefined){
+                setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+            }else{
+                setAvatar(defaultAvatar)
+            }
+    
+        }
+
+        if(token !== null){
+            getInfoFromAPI()
+            console.log('token !== null')
+        }else{
+            setAvatar(defaultAvatar)
+            console.log('token === null')
         }
         
-        let currentState = [...listReview];
-        currentState.unshift(newReview)
-        setListReview([...currentState])
-        setInput("")
 
-        // thêm dữ liệu vào api
-        const fetchConnect = async () => {
-            try{
-                const response = await axios.post(`http://localhost:4000/film/${19995}/addReview`,{newReview})
-            }catch(err){
-                console.log(err)
+    },[])
+    ///////////////////////////////////////////
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(token !== null){
+            let newReview = {
+                name: fullName,
+                date: getCurrentDate(),
+                overview: input,
+                type: type,
+                id: id
             }
+            
+            let currentState = [...listReview];
+            currentState.unshift(newReview)
+            setListReview([...currentState])
+            setInput("")
+    
+            // thêm dữ liệu vào api
+            const fetchConnect = async () => {
+                try{
+                    const response = await axios.post(`http://localhost:4000/film/${19995}/addReview`,{newReview})
+                }catch(err){
+                    console.log(err)
+                }
+            }
+            fetchConnect()
         }
-        fetchConnect()
+        
     }
 
     const handleKeyDown = (e) => {
@@ -73,13 +114,16 @@ function WriteReview() {
         }
     }
 
+    
+
     return (
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='containerWriteReview'>
             <div>
                 <div className='pt-3 mb-2 d-flex align-items-center fw-normal fs-6'>
-                    <FontAwesomeIcon icon={faUser} className='border border-1 rounded-5 p-2 text-danger'/>  
-                    <span className='mx-2 fw-bold '>Châu Hoàng Tấn</span>
+                    {/* <FontAwesomeIcon icon={faUser} className='border border-1 rounded-5 p-2 text-danger'/>   */}
+                    <img className='avatar' src={avatar}/>
+                    <span className='mx-2 fw-bold '>{fullName}</span>
                 </div>
             </div>
         

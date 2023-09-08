@@ -9,7 +9,7 @@ function SignUp() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [rewritePassword, setRewritePassword] = useState('')
+    const [fullName, setFullName] = useState('')
     const [notiErr, setNotiErr] = useState('')
 
     const theme = useSelector(state => state.theme.theme);
@@ -25,18 +25,18 @@ function SignUp() {
     const handleInputPassword = (e) => {
         setPassword(e.target.value)
     }
-    const handleInputRewritePassword = (e) => {
-        setRewritePassword(e.target.value)
+    const handleInputFullName = (e) => {
+        setFullName(e.target.value)
     }      
 
     const navigate = useNavigate()
     const handleClickSignUp = (e) => {
         e.preventDefault()
-        if(username !== '' && password !== '' && password === rewritePassword){
-            if(password === rewritePassword){
+        if(username !== '' && password !== '' && fullName !== ''){
+            
                 // gửi dữ liệu đến server để kiểm tra đăng ký hợp lệ không
                 try{
-                    const response = axios.post('http://localhost:4000/register', {username, password})
+                    const response = axios.post('http://localhost:4000/register', {username, password, fullName})
 
                     // response được gửi từ server là một promise
                     response.then((data)=>{
@@ -51,7 +51,7 @@ function SignUp() {
                 }catch(err){
                     console.log(err)
                 }
-            }
+            
         }
         
     }
@@ -104,31 +104,25 @@ function SignUp() {
                     </div>
 
                     <div className='inputField mt-4'>
-                        <label htmlFor='rewritePassword'>Password</label>
+                        <label htmlFor='rewritePassword'>Full name</label>
                         <br/>
                         <div>
                             <input  
-                                type='password' 
+                                type='text' 
                                 id='rewritePassword' 
                                 name='rewritePassword' 
-                                placeholder='Rewrite password...'
-                                value={rewritePassword}
-                                onChange={handleInputRewritePassword}/>
+                                placeholder='Full name...'
+                                value={fullName}
+                                onChange={handleInputFullName}/>
                             <FontAwesomeIcon className='icon text-dark' icon={faLock}/>
                         </div>
                          
                     </div>
 
-                    <div className='my-2'>
-                        <label>
-                            <input type='checkbox' /> Remember me
-                        </label>
-
-                        <a className='forgotPassword' href=''>Forgot password</a>
-                    </div>
+                    
 
                     <div className='d-flex justify-content-center my-4'>
-                        <button className=' btn btn-success' type='submit'>Sign up</button>
+                        <button className=' btn btn-success w-100' type='submit'>Sign up</button>
                     </div>
                     
 
