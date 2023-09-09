@@ -22,7 +22,6 @@ import axios from 'axios';
 import Search from './Search/Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Toggle from '../components/account/Account/Toggle/Toggle';
-import { setThemeMode } from '../components/themeModeRedux/themeModeAction';
 import MenuAccount from './MenuAccount/MenuAccount';
 function Header() {
 
@@ -102,42 +101,6 @@ function Header() {
     }
     return (
         <>
-            {/* <Navbar expand="lg" className="bg-body-tertiary" idName="header">
-                <Container fluid>
-                    <img src={logo} alt="Logo" className="logo-page" style={{ marginRight: "100px" }} />
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Link to="/" className="title">Home</Link>
-                            <Link to="/film" className="title">Film</Link>
-                            <Link to="/actor" className="title">Actor</Link>
-                        </Nav>
-                        <Nav>
-                            <InputGroup className="right-container" style={{ marginRight: "30px", width: '400px' }} >
-                                <Form.Control
-                                    placeholder="Search..."
-                                    aria-label="Search Bar"
-                                    aria-describedby="Search Bar" 
-                                    onChange={handleChangeSearch}/>
-                                <Button variant="warning">
-                                    <img src={search} alt="Search" style={{ width: "25px" }} />
-                                </Button>
-                            </InputGroup>
-                            
-                         
-                        </Nav>
-                        <Nav>
-                            {sessionStorage.getItem('token') === null ? 
-                                (<Button variant="warning" style={{ fontWeight: "bold" }}>
-                                <Link to="/login" className='text-dark text-decoration-none'>Sign In</Link>
-                            </Button>) :
-                                <img src={avatar} style={{width: '50px', height:'50px', borderRadius: '50%', cursor:'pointer'}}
-                                    onClick={handleAccount}/>}
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar > */}
-
             <div className='header'>
                 <div className='containerHeader'>
 

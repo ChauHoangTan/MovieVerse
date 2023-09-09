@@ -6,16 +6,24 @@ function Toggle() {
 
     const urlLightMode = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp5-VD3bk-nhAG3Gy0RvT2xKJ1sB1Bh6Qi_w&usqp=CAU';
     const urlNightMode = 'https://img.freepik.com/premium-vector/cute-night-sky-background-with-3d-moon-stars-square-composition_363543-444.jpg?w=2000'
-    const [state,setState] = useState(false)
 
     // lấy theme mode hiện tại
     const theme = useSelector(state=>state.theme.theme)
+    let stateTheme;
+    if(theme === 'light'){
+        stateTheme = true
+    }else{
+        stateTheme = false
+    }
+    const [state,setState] = useState(stateTheme)
+
+    
 
     // xử lý sự kiện click toggle
     const dispatch = useDispatch()
 
     const handleClickToggle = () => {
-        if(theme === 'light'){
+        if(state === false){
             dispatch(setThemeMode())
             setState(true)
         }else{
