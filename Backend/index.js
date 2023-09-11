@@ -41,5 +41,6 @@ app.use('/account', require('./routes/routeAccount.js'))
 
 app.listen(port, () => {
     console.log('Server is starting....')
+    res.send('Server is living...')
 })
 
