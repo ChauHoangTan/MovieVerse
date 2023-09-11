@@ -135,13 +135,13 @@ $light-color-menu: rgb(156, 185, 200);
 }
 
 .containerTopNewestFilm.light{
-  .overlay{
-    background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0) 0%,
-            $light-color-bg 125%
-        );
-  }
+  // .overlay{
+  //   background: linear-gradient(
+  //           180deg,
+  //           rgba(255, 255, 255, 0) 0%,
+  //           $light-color-bg 350%
+  //       );
+  // }
 }
 
 .containerTopNewestFilm.dark{
