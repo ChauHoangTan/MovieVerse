@@ -39,8 +39,11 @@ app.use('/:type', (req, res, next) => {
 }, require('./routes/routeFilm.js')) 
 app.use('/account', require('./routes/routeAccount.js'))
 
+app.get('/', (req, res) => {
+  res.send('Chào mừng đến với trang chủ!');
+});
+
 app.listen(port, () => {
     console.log('Server is starting....')
-    res.send('Server is living...')
 })
 
