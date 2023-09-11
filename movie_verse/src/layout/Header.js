@@ -37,11 +37,11 @@ function Header() {
         Authorization: `Bearer ${token}`,
       };
     const getInfoFromAPI = async() => {
-        const response = await axios.get('http://localhost:4000/account/info', {headers})
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/account/info`, {headers})
         const result = response.data
 
         if(result.avatar !== undefined){
-            setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+            setAvatar(`${process.env.REACT_APP_SERVER_URL_PREF}/update/image/${result.avatar}`)
         }else{
             setAvatar(defaultAvatar)
         }

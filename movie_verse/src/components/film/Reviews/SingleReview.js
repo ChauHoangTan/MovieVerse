@@ -39,7 +39,7 @@ function SingleReview({review}) {
     const [avatar, setAvatar] = useState()
 
     const getInfoUser = async()=>{
-        const response = await axios.get('http://localhost:4000/account/userReview', {
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/account/userReview`, {
             params:{
                 username: review.username
             }
@@ -51,7 +51,7 @@ function SingleReview({review}) {
         }
 
         if(result.avatar !== undefined){
-            setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+            setAvatar(`${process.env.REACT_APP_SERVER_URL_PREF}/update/image/${result.avatar}`)
         }else{
             setAvatar(defaultAvatar)
         }

@@ -25,7 +25,7 @@ function AccountInfomation() {
       };
 
     const getInfoFromAPI = async() => {
-        const response = await axios.get('http://localhost:4000/account/info', {headers})
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/account/info`, {headers})
         const result = response.data
         if(result.fullName !== undefined){
             setFullName(result.fullName)
@@ -83,7 +83,7 @@ function AccountInfomation() {
     const onClickEdit = (name) => {
 
         const updateInfoDataForDB = async (obj) => {
-            const response = await axios.put('http://localhost:4000/account/update',obj)
+            const response = await axios.put(`${process.env.REACT_APP_SERVER_URL_PREF}/account/update`,obj)
         }
         if(name === 'personal'){
             if(editPersonal === true){

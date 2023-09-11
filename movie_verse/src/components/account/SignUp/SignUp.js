@@ -36,7 +36,7 @@ function SignUp() {
             
                 // gửi dữ liệu đến server để kiểm tra đăng ký hợp lệ không
                 try{
-                    const response = axios.post('http://localhost:4000/register', {username, password, fullName})
+                    const response = axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/register`, {username, password, fullName})
 
                     // response được gửi từ server là một promise
                     response.then((data)=>{

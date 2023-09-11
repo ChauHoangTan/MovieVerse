@@ -19,7 +19,7 @@ function ListReaction() {
     useEffect(() => {
         const fetchConnect = async () => {
             try{
-                const response = await axios.post(`http://localhost:4000/${type}/${id}`,{
+                const response = await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/${type}/${id}`,{
                     token: sessionStorage.getItem('token'),
                     first_request: true,
 
@@ -44,7 +44,7 @@ function ListReaction() {
     const sendUpdateData = async (field, check) => {
         // thực hiện cập nhật dữ liệu
         try{
-            await axios.post(`http://localhost:4000/${type}/${id}`,{
+            await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/${type}/${id}`,{
                 token: sessionStorage.getItem('token'),
                 [field]: check,
 
@@ -87,7 +87,7 @@ function ListReaction() {
     const sendUpdateDataRating = async (field, check, rate) => {
         // thực hiện cập nhật dữ liệu
         try{
-            await axios.post(`http://localhost:4000/${type}/${id}`,{
+            await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/${type}/${id}`,{
                 token: sessionStorage.getItem('token'),
                 [field]: check,
                 rate: rate,

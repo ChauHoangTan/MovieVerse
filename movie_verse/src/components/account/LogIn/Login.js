@@ -30,7 +30,7 @@ function LogIn() {
     const handlePostLogin = async () => {
         try{
             // kiểm tra thông tin đăng nhập từ server
-            const response = await axios.post('http://localhost:4000/login', {username, password})
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/login`, {username, password})
             // const token = response.data.token
     
             // nếu trả về một token, nghĩa là thông tin đăng nhập đúng
@@ -51,6 +51,7 @@ function LogIn() {
     }
     const handleClickLogIn = (e) => {
         e.preventDefault()
+        console.log(process.env.RREACT_APP_SERVER_URL_PREF)
         handlePostLogin()
         // if(username !== '' && password !== ''){
         //     navigate('/')

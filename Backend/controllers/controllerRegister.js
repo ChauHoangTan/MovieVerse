@@ -1,7 +1,7 @@
 const controller = {}
 
 const {MongoClient} = require('mongodb');
-const url = 'mongodb://localhost:27017';
+const url = process.env.MONGO_DB_URL;
 const dbName = 'MovieVerse';
 
 controller.handleRegister = (req, res) => {

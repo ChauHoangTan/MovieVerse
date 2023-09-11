@@ -54,13 +54,13 @@ function WriteReview() {
 
     useEffect(() => {
         const getInfoFromAPI = async() => {
-            const response = await axios.get('http://localhost:4000/account/info', {headers})
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/account/info`, {headers})
             const result = response.data
             if(result.fullName !== undefined){
                 setFullName(result.fullName)
             }
             if(result.avatar !== undefined){
-                setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+                setAvatar(`${process.env.REACT_APP_SERVER_URL_PREF}/update/image/${result.avatar}`)
             }else{
                 setAvatar(defaultAvatar)
             }
@@ -98,7 +98,7 @@ function WriteReview() {
             // thêm dữ liệu vào api
             const fetchConnect = async () => {
                 try{
-                    const response = await axios.post(`http://localhost:4000/film/${19995}/addReview`,{newReview})
+                    const response = await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/film/${19995}/addReview`,{newReview})
                 }catch(err){
                     console.log(err)
                 }

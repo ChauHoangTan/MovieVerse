@@ -26,18 +26,18 @@ function Account() {
       };
 
     const getInfoFromAPI = async() => {
-        const response = await axios.get('http://localhost:4000/account/info', {headers})
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/account/info`, {headers})
         const result = response.data
         if(result.fullName !== undefined){
             setFullName(result.fullName)
         }
 
         if(result.background !== undefined){
-            setBackground(`http://localhost:4000/update/image/${result.background}`)
+            setBackground(`${process.env.REACT_APP_SERVER_URL_PREF}/update/image/${result.background}`)
         }
 
         if(result.avatar !== undefined){
-            setAvatar(`http://localhost:4000/update/image/${result.avatar}`)
+            setAvatar(`${process.env.REACT_APP_SERVER_URL_PREF}/update/image/${result.avatar}`)
         }
 
     }
@@ -133,7 +133,7 @@ function Account() {
             formData.append('background',file)
             formData.append('type','background')
             formData.append('token', sessionStorage.getItem('token'))
-            await axios.post('http://localhost:4000/account/update/image',formData, {
+            await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/account/update/image`,formData, {
                 // gửi formData với content-type là multipart/form-data để xử lý
                 // multer bên express js
                 headers: {
@@ -151,7 +151,7 @@ function Account() {
             formData.append('avatar',file)
             formData.append('type','avatar')
             formData.append('token', sessionStorage.getItem('token'))
-            await axios.post('http://localhost:4000/account/update/image',formData, {
+            await axios.post(`${process.env.REACT_APP_SERVER_URL_PREF}/account/update/image`,formData, {
                 // gửi formData với content-type là multipart/form-data để xử lý
                 // multer bên express js
                 headers: {

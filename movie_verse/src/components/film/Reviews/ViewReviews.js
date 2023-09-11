@@ -22,7 +22,7 @@ function ViewReviews( {title, theme }) {
     useEffect(()=>{
         const fetchConnect = async () => {
             try{
-                const response = await axios.get(`http://localhost:4000/${type}/${id}/reviews`)
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL_PREF}/${type}/${id}/reviews`)
                 setListReview(response.data)
                 console.log(response)
             }catch(err){
