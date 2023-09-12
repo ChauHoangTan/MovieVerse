@@ -1,6 +1,5 @@
 # MovieVerse
-
-![Trang Chủ](https://github.com/ChauHoangTan/MovieVerse/assets/118994379/980f21a6-0553-4441-a50e-a315f032284d)
+![screencapture-chauhoangtan-github-io-MovieVerse-2023-09-12-16_09_56](https://github.com/ChauHoangTan/MovieVerse/assets/118994379/141647b6-c7fb-4f3a-bed8-7eeb015f6d7f)
 
 **Live Demo Code(Deployed FE, BE, DB) : *https://chauhoangtan.github.io/MovieVerse/***
 
