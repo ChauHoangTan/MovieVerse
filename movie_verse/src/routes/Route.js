@@ -14,7 +14,7 @@ import NoPage from '../components/noPage/NoPage.js';
 
 function RouteLayout() {
     return ( 
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
@@ -27,7 +27,7 @@ function RouteLayout() {
                 <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
         );
 }
 

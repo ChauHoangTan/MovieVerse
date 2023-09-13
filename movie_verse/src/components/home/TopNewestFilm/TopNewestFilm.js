@@ -33,6 +33,7 @@ function TopNewestFilm({list, genres}) {
 
     const navigateToFilmDetails = (id) => {
         navigate(`/movie/${id}`)
+        
     }
 
 

@@ -7,12 +7,17 @@ import React from 'react';
 function Search({list}) {
     console.log(list)
     const baseURL = "https://chauhoangtan.github.io/MovieVerse"
+    const navigate = useNavigate()
     const directToDetailsFilm = (id, type) =>{
-        window.location.replace(`/MovieVerse/${type}/${id}`);
+        // window.location.href = (`/MovieVerse/${type}/${id}`);
+        navigate(`/${type}/${id}`)
+        window.location.reload()
     }
 
     const directToActorDetails = (id) => {
-        window.location.replace(`/MovieVerse/${baseURL}/actor/${id}`)
+        // window.location.href = (`/MovieVerse/actor/${id}`)
+        navigate(`/actor/${id}`)
+        window.location.reload()
     }
     return ( 
         <div className='wrapperSearchList'>

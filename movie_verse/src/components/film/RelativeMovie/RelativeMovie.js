@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-grid-carousel'
 import './RelativeMovie.scss'
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function RelativeMovie({title, similars, theme}) {
 
@@ -17,11 +17,10 @@ function RelativeMovie({title, similars, theme}) {
     }
 
     const {type} = useParams()
-
+    const navigate = useNavigate()
     const moveToAnotherFilm = (id) => {
-    
-        window.location.replace(`/MovieVerse/${type}/${id}`)
-
+        navigate(`/${type}/${id}`)
+        window.location.reload()
     }
 
     return ( 
