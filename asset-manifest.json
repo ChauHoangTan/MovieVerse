@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MovieVerse/static/css/main.569722e3.css",
-    "main.js": "/MovieVerse/static/js/main.2775d9eb.js",
+    "main.js": "/MovieVerse/static/js/main.acc26cba.js",
     "static/js/787.e72ebcde.chunk.js": "/MovieVerse/static/js/787.e72ebcde.chunk.js",
     "static/media/logo_3.png": "/MovieVerse/static/media/logo_3.340b33519efd33399735.png",
     "static/media/inter-latin-ext-400-normal.woff": "/MovieVerse/static/media/inter-latin-ext-400-normal.3ccf133441ba225afa51.woff",
@@ -21,11 +21,11 @@
     "static/media/inter-vietnamese-400-normal.woff2": "/MovieVerse/static/media/inter-vietnamese-400-normal.789afb71d327988e2fc8.woff2",
     "index.html": "/MovieVerse/index.html",
     "main.569722e3.css.map": "/MovieVerse/static/css/main.569722e3.css.map",
-    "main.2775d9eb.js.map": "/MovieVerse/static/js/main.2775d9eb.js.map",
+    "main.acc26cba.js.map": "/MovieVerse/static/js/main.acc26cba.js.map",
     "787.e72ebcde.chunk.js.map": "/MovieVerse/static/js/787.e72ebcde.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.569722e3.css",
-    "static/js/main.2775d9eb.js"
+    "static/js/main.acc26cba.js"
   ]
 }
