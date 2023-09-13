@@ -8,11 +8,11 @@ function Search({list}) {
     console.log(list)
     const baseURL = "https://chauhoangtan.github.io/MovieVerse"
     const directToDetailsFilm = (id, type) =>{
-        window.location.href = (`${baseURL}/${type}/${id}`);
+        window.location.replace(`/MovieVerse/${type}/${id}`);
     }
 
     const directToActorDetails = (id) => {
-        window.location.href = (`${baseURL}/actor/${id}`)
+        window.location.replace(`/MovieVerse/${baseURL}/actor/${id}`)
     }
     return ( 
         <div className='wrapperSearchList'>

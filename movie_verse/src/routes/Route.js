@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, BrowserRouter } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Layout from '../layout/Layout.js';
@@ -14,7 +14,7 @@ import NoPage from '../components/noPage/NoPage.js';
 
 function RouteLayout() {
     return ( 
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
@@ -27,7 +27,7 @@ function RouteLayout() {
                 <Route path="*" element={<NoPage/>}/>
                 </Route>
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
         );
 }
 

@@ -20,7 +20,7 @@ function RelativeMovie({title, similars, theme}) {
 
     const moveToAnotherFilm = (id) => {
     
-        window.location.href = (`/${type}/${id}`)
+        window.location.replace(`/MovieVerse/${type}/${id}`)
 
     }
 
