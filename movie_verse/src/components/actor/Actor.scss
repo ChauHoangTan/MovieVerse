@@ -317,7 +317,7 @@ $dark-color-text: #ffffff;
 }
 
 .containerActor.light{
-    color: $light-color-text;
+    color: $dark-color-text;
     background-color: $light-color-bg;
     
 
@@ -329,11 +329,7 @@ $dark-color-text: #ffffff;
         .containerBanner::after{
             
         }
-        .overlay{
-            background: linear-gradient(
-                to top, $light-color-bg 0%, rgba(0, 0, 0, 0) 100%
-            );
-        }
+        
     }
 
     

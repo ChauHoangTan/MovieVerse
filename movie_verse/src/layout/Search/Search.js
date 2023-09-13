@@ -6,13 +6,13 @@ import React from 'react';
 
 function Search({list}) {
     console.log(list)
-
+    const baseURL = "https://chauhoangtan.github.io/MovieVerse"
     const directToDetailsFilm = (id, type) =>{
-        window.location.href = (`/${type}/${id}`);
+        window.location.href = (`${baseURL}/${type}/${id}`);
     }
 
     const directToActorDetails = (id) => {
-        window.location.href = (`/actor/${id}`)
+        window.location.href = (`${baseURL}/actor/${id}`)
     }
     return ( 
         <div className='wrapperSearchList'>

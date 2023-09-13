@@ -1,7 +1,7 @@
 import { TOGGLE_THEME_MODE } from "./themeModeTypes";
 
 const initialState = {
-    theme: localStorage.getItem('theme') || 'light',
+    theme: localStorage.getItem('theme') || 'dark',
 }
 
 const themeReducer = (state = initialState, action) => {
