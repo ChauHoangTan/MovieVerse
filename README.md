@@ -30,7 +30,9 @@
 * Clone repository: git clone https://github.com/ChauHoangTan/MovieVerse.git
 * Configure:
   * movie_verse: at .env change REACT_APP_SERVER_URL_PREF correspond to the server url (Server have port 4000, url local: http://localhost:4000)
-  * backend: at .env change MONGO_DB_URL correspond your MongoDb url
+  * backend:
+    * at .env change MONGO_DB_URL correspond your MongoDb url
+    * index.js: change res.setHeader('Access-Control-Allow-Origin', 'https://chauhoangtan.github.io') to res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); 
 * Setup:
   * cd movie_verse: npm install
   * cd Backend: npm install
