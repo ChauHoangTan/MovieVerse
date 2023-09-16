@@ -5,6 +5,7 @@
 
 ##
 **MovieVerse is a website that allows users to view detailed information about movies, actors...**
+* **MERN STACK**
 * **API** build with NodeJS, ExpressJS, Sequelize(MongoDB), Axios and JWT Auth
 * **WEB APP** build with ReactJs(React Hooks), Redux, ES6, Jsx, Scss, Javascripts...
 * Use [The MovieDB API](https://developer.themoviedb.org/docs) to get data films, actors...
