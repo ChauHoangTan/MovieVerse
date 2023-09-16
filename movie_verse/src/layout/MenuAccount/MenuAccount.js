@@ -16,7 +16,7 @@ function MenuAccount({state}) {
 
     const logout = () => {
         sessionStorage.removeItem('token')
-        navigate('/signup')
+        navigate('/login')
     }
     return ( 
         <div className={`menuAccount ${theme} ${state}`}>

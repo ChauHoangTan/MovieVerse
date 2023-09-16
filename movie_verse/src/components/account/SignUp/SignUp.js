@@ -122,9 +122,15 @@ function SignUp() {
                     
 
                     <div className='d-flex justify-content-center my-4'>
-                        <button className=' btn btn-success w-100' type='submit'>Sign up</button>
+                        <button className=' btn btn-success w-100 me-2' type='submit'>Sign up</button>
+
+                        <button className=' btn btn-primary w-100 ms-2' onClick={
+                            ()=>{
+                                navigate('/login')
+                            }
+                        }>Sign in</button>
                     </div>
-                    
+
 
                     <div className='my-4'>
                         <div className='text-center fs-5 my-2'>Log In By </div>
