@@ -41,7 +41,8 @@ function LogIn() {
                 // set trạng thái tài khoản là true
                 dispatch(setLoginLogout(true))
                 // điều hướng đến home
-                window.location.href = ('/')
+                navigate('/')
+                window.location.reload()
                 
             }
 
